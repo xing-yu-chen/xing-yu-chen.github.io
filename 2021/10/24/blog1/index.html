@@ -17,11 +17,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/d002150a2eb02a0358d1c88199e4e726.png">
 <meta property="og:image" content="http://www.templatesy.com/Uploads/Editor/2016-07-21/57901a2050fa6.jpg">
-<meta property="og:image" content="http://xing-yu-chen.github.io/.io//image.jpg">
-<meta property="og:image" content="http://xing-yu-chen.github.io/.io//image.jpg">
-<meta property="og:image" content="http://xing-yu-chen.github.io/.io//img.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/10/24/blog1/image.jpg">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/10/24/blog1/image.jpg">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/10/24/blog1/a07fded57b1cdeceecc21d68c3703b2cb002f088.png@942w_108h_progressive-20211025022705306.webp">
 <meta property="article:published_time" content="2021-10-24T09:42:24.000Z">
-<meta property="article:modified_time" content="2021-10-24T18:13:50.170Z">
+<meta property="article:modified_time" content="2021-10-24T18:27:16.053Z">
 <meta property="article:author" content="xing-yu-chen">
 <meta property="article:tag" content="博客搭建">
 <meta property="article:tag" content="hexo">
@@ -375,16 +375,17 @@
 
 <p><strong>举例:</strong></p>
 <p>如在一个文件目录下，博客名为1.md，相应的存在一个1文件夹存放图片image.jpg。</p>
-<p>在Typora编辑器中，普通的md文件使用<img src="/.io//image.jpg">能在编辑器中正常显示图片。 </p>
-<p>在hexo中，按理说应该是使用<img src="/.io//image.jpg">，但网页中却无法正常显示。 </p>
+<p>在Typora编辑器中，普通的md文件使用<img src="/2021/10/24/blog1/image.jpg">能在编辑器中正常显示图片。 </p>
+<p>在hexo中，按理说应该是使用<img src="/2021/10/24/blog1/image.jpg">，但网页中却无法正常显示。 </p>
 <p><strong>解决方案:</strong></p>
 <ol>
+<li><p>安装此插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm install hexo-asset-image有bug不要使用</span></span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure></li>
 <li><p>在根目录下的_config.yaml 文件中修改配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
 <li><p>当该配置被应用后，使用hexo new命令创建新文章时，会生成相同名字的文件夹，也就是文章资源文件夹。 </p>
-<img src="/.io//img.png" width="50%" style="margin-left:25%"></li>
-<li><p>在根目录下建立img文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用html的写法来显示</span></span><br><span class="line">&lt;img src=<span class="string">&quot;img/图片名.png&quot;</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<p><img src="/2021/10/24/blog1/a07fded57b1cdeceecc21d68c3703b2cb002f088.png@942w_108h_progressive-20211025022705306.webp" alt="img"></p>
+</li>
 </ol>
 
       
