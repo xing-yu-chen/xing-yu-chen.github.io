@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://xing-yu-chen.github.io/2021/11/02/javaTest/</loc>
+    <loc>http://xing-yu-chen.github.io/2020/11/04/spring/</loc>
     
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xing-yu-chen.github.io/2021/10/24/blog1/</loc>
+    <loc>http://xing-yu-chen.github.io/2020/11/02/javaTest/</loc>
     
-    <lastmod>2021-10-26</lastmod>
+    <lastmod>2021-11-04</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/2020/10/24/blog1/</loc>
+    
+    <lastmod>2021-11-04</lastmod>
     
   </url>
   
@@ -39,7 +46,7 @@
 
   <url>
     <loc>http://xing-yu-chen.github.io/</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -47,28 +54,77 @@
   
   <url>
     <loc>http://xing-yu-chen.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://xing-yu-chen.github.io/tags/hexo/</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://xing-yu-chen.github.io/tags/Java/</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://xing-yu-chen.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2021-11-02</lastmod>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/java/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/spring/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/%E5%BA%95%E5%B1%82/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/IOC/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/DI/</loc>
+    <lastmod>2021-11-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xing-yu-chen.github.io/tags/AOP/</loc>
+    <lastmod>2021-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
