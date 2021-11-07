@@ -6,23 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xing-yu-chen.github.io">
-  <title>Tag: 面试题 | 小呆博客</title>
+  <title>Web安全入门-HTML潜在漏洞 | 小呆博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小呆博客">
-<meta property="og:url" content="http://xing-yu-chen.github.io/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+  <meta name="description" content="HTML潜在漏洞 纯HTML基本没有漏洞  Iframe clickjack（点击结石）  通过对iframe插入的opacity:0.00001通过覆盖点击">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全入门-HTML潜在漏洞">
+<meta property="og:url" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/index.html">
 <meta property="og:site_name" content="小呆博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="HTML潜在漏洞 纯HTML基本没有漏洞  Iframe clickjack（点击结石）  通过对iframe插入的opacity:0.00001通过覆盖点击">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/image-20211108012140471.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/image-20211108012353107.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/image-20211108012513370.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/1.png">
+<meta property="article:published_time" content="2021-11-07T16:11:52.000Z">
+<meta property="article:modified_time" content="2021-11-07T17:54:24.751Z">
 <meta property="article:author" content="Small Dai">
-<meta property="article:tag" content="前端博客，后端博客，Java">
-<meta property="article:tag" content="vue.js">
-<meta property="article:tag" content="jquery">
-<meta property="article:tag" content="html5">
-<meta property="article:tag" content="springboot">
-<meta property="article:tag" content="springcloud">
+<meta property="article:tag" content="Web安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/image-20211108012140471.png">
   
     <link rel="alternative" href="/atom.xml" title="小呆博客" type="application/atom+xml">
   
@@ -169,69 +171,268 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-internet-safe-2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/02/javaTest/" class="archive-article-date">
-  	<time datetime="2020-11-02T00:57:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/02/javaTest/">Java八股文简版面经</a>
+    <h1 class="article-title" itemprop="name">
+      Web安全入门-HTML潜在漏洞
     </h1>
   
 
 
   <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2020/11/02/javaTest/" class="pageViews">0</span>次
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/11/08/internet-safe-2/" class="pageViews">0</span>次
   </a>
 
 
-        <div class="article-info info-on-right">
-          
+<!--显示阅读次数完毕-->
+        
+        <a href="/2021/11/08/internet-safe-2/" class="archive-article-date">
+  	<time datetime="2021-11-07T16:11:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HTML潜在漏洞"><a href="#HTML潜在漏洞" class="headerlink" title="HTML潜在漏洞"></a>HTML潜在漏洞</h2><ul>
+<li><p>纯HTML基本没有漏洞</p>
+</li>
+<li><p>Iframe clickjack（点击结石）</p>
+<blockquote>
+<p>通过对iframe插入的opacity:0.00001通过覆盖点击</p>
+</blockquote>
+</li>
+</ul>
+<span id="more"></span>
+
+<br>
+
+<h2 id="CSS漏洞"><a href="#CSS漏洞" class="headerlink" title="CSS漏洞"></a>CSS漏洞</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">&lt;!--点击结石漏洞--&gt;</span><br><span class="line"><span class="selector-tag">iframe</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>:<span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">filter</span>:<span class="built_in">alpha</span>(opacity=<span class="number">0</span>);</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0.000001</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>纯CSS漏洞很少</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://github.com/maxchehab/CSS-Keylogging">http://github.com/maxchehab/CSS-Keylogging</a> (CSS键盘劫持)</p>
+<blockquote>
+<p>通过node.js写了一个自运行的Apache服务，当前端页面调用向后端发送请求的css的时候，就会发送一个请求，把输入的参数传过去</p>
+</blockquote>
+<p><em>css代码文件</em></p>
+<img src="/2021/11/08/internet-safe-2/image-20211108012140471.png" alt="image-20211108012140471">
+
+<p><em>运行的js文件</em></p>
+<img src="/2021/11/08/internet-safe-2/image-20211108012353107.png" alt="image-20211108012353107" style="zoom:150%;">
+
+<p><em>样式代码</em></p>
+<img src="/2021/11/08/internet-safe-2/image-20211108012513370.png" alt="image-20211108012513370" style="zoom:67%;">
+
+<p><em>安装命令</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm i</span><br><span class="line"><span class="comment"># 运行服务</span></span><br><span class="line">npm run start</span><br></pre></td></tr></table></figure></li>
+</ul>
+<br>
+
+<h2 id="JavaScript漏洞"><a href="#JavaScript漏洞" class="headerlink" title="JavaScript漏洞"></a>JavaScript漏洞</h2><h3 id="JS能做什么"><a href="#JS能做什么" class="headerlink" title="JS能做什么"></a>JS能做什么</h3><ul>
+<li>文件操作</li>
+<li>HTML操作</li>
+<li>DOM操作</li>
+<li>Cookie操作</li>
+<li>数据操作</li>
+</ul>
+<br>
+
+<h3 id="潜在漏洞"><a href="#潜在漏洞" class="headerlink" title="潜在漏洞"></a>潜在漏洞</h3><ul>
+<li>纯JS漏洞</li>
+<li>各种XSS攻击</li>
+</ul>
+<br>
+
+<h3 id="常用XSS工具"><a href="#常用XSS工具" class="headerlink" title="常用XSS工具"></a>常用XSS工具</h3><h4 id="BeEF-XSS"><a href="#BeEF-XSS" class="headerlink" title="BeEF XSS"></a>BeEF XSS</h4><blockquote>
+<p>BeEF-XSS是一款非常强大的web框架攻击平台，集成了许多payload，可以实现许多功能！</p>
+</blockquote>
+<ol>
+<li><p>安装BeEF</p>
+<ul>
+<li><p>非Kali环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -p 3000:3000 janes/beaf</span><br></pre></td></tr></table></figure></li>
+<li><p>Kali环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># beef-xss</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>登录后台页面</p>
+<blockquote>
+<p>kail:用户名默认为beef，密码在首次启动beef-xss时需要手动设置。（启动beef-xss会自动打开浏览器）</p>
+<p>非kali:<a target="_blank" rel="noopener" href="http://127.0.0.1:3000/ui/authentication,%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81%E9%83%BD%E6%98%AFbeaf">http://127.0.0.1:3000/ui/authentication,用户名和密码都是beaf</a></p>
+<p><strong>功能</strong>:具体操作==远控</p>
+</blockquote>
+<p><img src="/2021/11/08/internet-safe-2/1.png" alt="img"></p>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">面试题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Web安全</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://xing-yu-chen.github.io/2021/11/08/internet-safe-2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/11/07/internet-safe-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Web安全入门-目录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E6%BD%9C%E5%9C%A8%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">HTML潜在漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.</span> <span class="toc-text">CSS漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.</span> <span class="toc-text">JavaScript漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">3.1.</span> <span class="toc-text">JS能做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%9C%E5%9C%A8%E6%BC%8F%E6%B4%9E"><span class="toc-number">3.2.</span> <span class="toc-text">潜在漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8XSS%E5%B7%A5%E5%85%B7"><span class="toc-number">3.3.</span> <span class="toc-text">常用XSS工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BeEF-XSS"><span class="toc-number">3.3.1.</span> <span class="toc-text">BeEF XSS</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -253,9 +454,9 @@
     var yiliaConfig = {
         mathjax: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         open_in_new: false,
         toc_hide_index: true,
