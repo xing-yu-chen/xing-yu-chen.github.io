@@ -6,23 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xing-yu-chen.github.io">
-  <title>Tag: Java语言基础 | 小呆博客</title>
+  <title>Java代码生成器01-FreeMarker | 小呆博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小呆博客">
-<meta property="og:url" content="http://xing-yu-chen.github.io/tags/Java%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/index.html">
+  <meta name="description" content="1. 为什么用FreeMarker简介: FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。 总之: 就是使用FreeMarker可以基于模版生成我们所需要的任何文件，并且可以将我们需要的参数引入进去。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java代码生成器01-FreeMarker">
+<meta property="og:url" content="http://xing-yu-chen.github.io/2021/12/18/JavaGenerator/index.html">
 <meta property="og:site_name" content="小呆博客">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="1. 为什么用FreeMarker简介: FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。 总之: 就是使用FreeMarker可以基于模版生成我们所需要的任何文件，并且可以将我们需要的参数引入进去。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/12/18/JavaGenerator/image-20211218034855492.png">
+<meta property="article:published_time" content="2021-12-17T19:18:50.000Z">
+<meta property="article:modified_time" content="2021-12-19T15:14:28.692Z">
 <meta property="article:author" content="Small Dai">
-<meta property="article:tag" content="前端博客，后端博客，Java">
-<meta property="article:tag" content="vue.js">
-<meta property="article:tag" content="jquery">
-<meta property="article:tag" content="html5">
-<meta property="article:tag" content="springboot">
-<meta property="article:tag" content="springcloud">
+<meta property="article:tag" content="Java代码生成器">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xing-yu-chen.github.io/2021/12/18/JavaGenerator/image-20211218034855492.png">
   
     <link rel="alternative" href="/atom.xml" title="小呆博客" type="application/atom+xml">
   
@@ -70,7 +69,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 8
+                         总文章数 10
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -169,121 +168,446 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-JavaGenerator" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/10/jvm-reder/" class="archive-article-date">
-  	<time datetime="2021-11-09T17:38:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/10/jvm-reder/">JVM指令手册</a>
+    <h1 class="article-title" itemprop="name">
+      Java代码生成器01-FreeMarker
     </h1>
   
 
 
   <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/11/10/jvm-reder/" class="pageViews">0</span>次
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/12/18/JavaGenerator/" class="pageViews">0</span>次
   </a>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java语言基础</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java学习资料</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/09/java-01/" class="archive-article-date">
-  	<time datetime="2021-11-09T11:48:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
+<!--显示阅读次数完毕-->
+        
+        <a href="/2021/12/18/JavaGenerator/" class="archive-article-date">
+  	<time datetime="2021-12-17T19:18:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-为什么用FreeMarker"><a href="#1-为什么用FreeMarker" class="headerlink" title="1. 为什么用FreeMarker"></a>1. 为什么用FreeMarker</h2><p><strong>简介:</strong> FreeMarker 是一款 <em>模板引擎</em>： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
+<p><strong>总之:</strong> 就是使用FreeMarker可以基于模版生成我们所需要的任何文件，并且可以将我们需要的参数引入进去。</p>
+<span id="more"></span>
+
+
+
+<h2 id="2-如何在Java项目中使用"><a href="#2-如何在Java项目中使用" class="headerlink" title="2. 如何在Java项目中使用"></a>2. 如何在Java项目中使用</h2><h3 id="2-1-引入依赖-pom-xml"><a href="#2-1-引入依赖-pom-xml" class="headerlink" title="2.1 引入依赖(pom.xml)"></a>2.1 引入依赖(pom.xml)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--普通Java项目--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.freemarker<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.31<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--SpringBoot项目可以使用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-文件模版"><a href="#2-2-文件模版" class="headerlink" title="2.2 文件模版"></a>2.2 文件模版</h3><h4 id="2-2-1-创建模版文件-hello-ftl"><a href="#2-2-1-创建模版文件-hello-ftl" class="headerlink" title="2.2.1 创建模版文件(hello.ftl)"></a>2.2.1 创建模版文件(hello.ftl)</h4><p><em>.ftl</em>一般是freemarker模版的常用后缀</p>
+<p><img src="/2021/12/18/JavaGenerator/image-20211218034855492.png" alt="image-20211218034855492"></p>
+<h4 id="2-2-2-简单编写模版内容-hello-ftl"><a href="#2-2-2-简单编写模版内容-hello-ftl" class="headerlink" title="2.2.2 简单编写模版内容(hello.ftl)"></a>2.2.2 简单编写模版内容(hello.ftl)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好：$&#123;username&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-3-编写测试代码-Test-java"><a href="#2-2-3-编写测试代码-Test-java" class="headerlink" title="2.2.3 编写测试代码(Test.java)"></a>2.2.3 编写测试代码(Test.java)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  <span class="comment">//创建FreeMarker配置类</span></span><br><span class="line">  Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">  <span class="comment">//初始化模版</span></span><br><span class="line">  Template template =<span class="keyword">null</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//指定模版加载器</span></span><br><span class="line">    configuration.setDirectoryForTemplateLoading(<span class="keyword">new</span> File(<span class="string">&quot;项目绝对路径/src/main/resources/templates/&quot;</span>));</span><br><span class="line">    configuration.setObjectWrapper(<span class="keyword">new</span> DefaultObjectWrapper());</span><br><span class="line">    configuration.setDefaultEncoding(<span class="string">&quot;UTF-8&quot;</span>);   <span class="comment">//设置编码</span></span><br><span class="line">    <span class="comment">//获取模板文件</span></span><br><span class="line">    template=configuration.getTemplate( <span class="string">&quot;hello.ftl&quot;</span>);</span><br><span class="line">    <span class="comment">//构造数据模型</span></span><br><span class="line">    HashMap&lt;String, Object&gt; stringObjectHashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    stringObjectHashMap.put(<span class="string">&quot;username&quot;</span>,<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">    <span class="comment">//模型处理，输出为文件</span></span><br><span class="line">    template.process(stringObjectHashMap,<span class="keyword">new</span> FileWriter(<span class="string">&quot;项目绝对路径/src/main/resources/hello.txt&quot;</span>));</span><br><span class="line">  &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-字符串模版"><a href="#2-3-字符串模版" class="headerlink" title="2.3 字符串模版"></a>2.3 字符串模版</h3><h4 id="2-3-1-编写测试代码"><a href="#2-3-1-编写测试代码" class="headerlink" title="2.3.1 编写测试代码"></a>2.3.1 编写测试代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  <span class="comment">//创建配置对象</span></span><br><span class="line">  Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">  <span class="comment">//制定加载器</span></span><br><span class="line">  Template template =<span class="keyword">null</span>;</span><br><span class="line">  <span class="comment">//创建字符串模版</span></span><br><span class="line">  configuration.setTemplateLoader(<span class="keyword">new</span> StringTemplateLoader());</span><br><span class="line">  <span class="comment">//通过字符串创建模版</span></span><br><span class="line">  String templateString = <span class="string">&quot;欢迎您:$&#123;username&#125;&quot;</span>;</span><br><span class="line">  template = <span class="keyword">new</span> Template(<span class="string">&quot;name1&quot;</span>, <span class="keyword">new</span> StringReader(templateString), configuration);</span><br><span class="line">  <span class="comment">//构造数据</span></span><br><span class="line">  HashMap&lt;String, Object&gt; stringObjectHashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">  stringObjectHashMap.put(<span class="string">&quot;username&quot;</span>,<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">  <span class="comment">//处理模版,在控制台输出</span></span><br><span class="line">  template.process(stringObjectHashMap,<span class="keyword">new</span> PrintWriter(System.out));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-FreeMarker-FTL常用指令"><a href="#3-FreeMarker-FTL常用指令" class="headerlink" title="3. FreeMarker FTL常用指令"></a>3. FreeMarker FTL常用指令</h2><h3 id="3-1-if指令"><a href="#3-1-if指令" class="headerlink" title="3.1 if指令"></a>3.1 if指令</h3><h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;#if 条件&gt;</span><br><span class="line">	xxx</span><br><span class="line">  &lt;#elseif&gt;</span><br><span class="line">  xxx</span><br><span class="line">  &lt;#else&gt;</span><br><span class="line">  xxx</span><br><span class="line">&lt;/#if&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--测试模版--&gt;</span><br><span class="line">&lt;#if num=0&gt;</span><br><span class="line">    数字0</span><br><span class="line">&lt;#elseif num=1&gt;</span><br><span class="line">    数字1</span><br><span class="line">&lt;#else&gt;</span><br><span class="line">    数字其他</span><br><span class="line">&lt;/#if&gt;</span><br><span class="line">  </span><br><span class="line">&lt;#--测试输入num=1，输出结果--&gt;</span><br><span class="line">    数字1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-list指令"><a href="#3-2-list指令" class="headerlink" title="3.2 list指令"></a>3.2 list指令</h3><h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--数据名称 as 别名--&gt;</span><br><span class="line">&lt;#list 数据名称 as 别名&gt;</span><br><span class="line">  $&#123;别名&#125;</span><br><span class="line">&lt;/#list&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java测试代码中例子</span></span><br><span class="line">ArrayList&lt;String&gt; strings = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">strings.add(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">strings.add(<span class="string">&quot;李四&quot;</span>);</span><br><span class="line">strings.add(<span class="string">&quot;王五&quot;</span>);</span><br><span class="line">stringObjectHashMap.put(<span class="string">&quot;list&quot;</span>,strings);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--list指令：循环迭代 语法: 数据名称 as 别名--&gt;</span><br><span class="line">&lt;#list list as abc&gt;</span><br><span class="line">    $&#123;abc&#125;</span><br><span class="line">&lt;/#list&gt;</span><br><span class="line">&lt;#--测试结果--&gt;</span><br><span class="line">    张三</span><br><span class="line">    李四</span><br><span class="line">    王五</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-include指令"><a href="#3-3-include指令" class="headerlink" title="3.3 include指令"></a>3.3 include指令</h3><h4 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--模版包含--&gt;</span><br><span class="line">&lt;#inlcude &quot;另一个模版&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--include--&gt;</span><br><span class="line">&lt;#include &quot;hello.ftl&quot;&gt;</span><br><span class="line">&lt;#--模版2--&gt;</span><br><span class="line">模版2</span><br><span class="line">$&#123;model2&#125;</span><br><span class="line">&lt;#--测试结果--&gt;</span><br><span class="line">模版2</span><br><span class="line">垃圾堆</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-4-assign指令"><a href="#3-4-assign指令" class="headerlink" title="3.4 assign指令"></a>3.4 assign指令</h3><h4 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--定义--&gt;</span><br><span class="line">&lt;#assign 变量名=变量值&gt;</span><br><span class="line">&lt;#--引用--&gt;</span><br><span class="line">$&#123;变量名&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;#assign model2=&quot;zhangsan&quot;&gt;</span><br><span class="line">$&#123;model2&#125;</span><br><span class="line">&lt;#--测试输出--&gt;</span><br><span class="line">zhangsan</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-内置函数"><a href="#4-内置函数" class="headerlink" title="4.内置函数"></a>4.内置函数</h2><ul>
+<li><code>?html</code>:html字符转义</li>
+<li><code>?cap_first</code>:字符串的第一个字母变为大写形式</li>
+<li><code>?lower_case</code>:字符串的小写形式</li>
+<li><code>?upper_case</code>:字符串的大写形式</li>
+<li><code>?trim</code>:去掉字符串首尾的空格</li>
+<li><code>?substring</code>:截取字符串</li>
+<li><code>?length</code>:取长度</li>
+<li><code>?size</code>:序列中元素的个数</li>
+<li><code>?int</code>:数字的整数部分(比如-1.9?int结果就是-1)</li>
+</ul>
+<h2 id="5-数据库元数据"><a href="#5-数据库元数据" class="headerlink" title="5. 数据库元数据"></a>5. 数据库元数据</h2><h3 id="5-1-什么是元数据"><a href="#5-1-什么是元数据" class="headerlink" title="5.1 什么是元数据"></a>5.1 什么是元数据</h3><p><strong>元数据</strong>(MetaData),是指<u>定义数据结构的数据</u>。那么数据库元数据就是指定义数据库各类对象结构的数据。例如<em>数据库名称</em> 、<em>表名</em> 、<em>列名</em> 、<em>用户名</em> 、<em>版本名</em> 以及<em>从SQL语句得到的结果中的大部分字符串</em> 是元数据。</p>
+<h3 id="5-2-数据库元数据的作用"><a href="#5-2-数据库元数据的作用" class="headerlink" title="5.2 数据库元数据的作用"></a>5.2 数据库元数据的作用</h3><ul>
+<li>在应用设计时可以充分利用数据库元数据</li>
+<li>深入数据库组织结构，理解数据访问相关实现原理。</li>
+</ul>
+<h3 id="5-3-如何获取元数据"><a href="#5-3-如何获取元数据" class="headerlink" title="5.3 如何获取元数据"></a>5.3 如何获取元数据</h3><p>使用JDBC来处理数据库的接口主要有三个，即Connection、PreparedStatement和ResultSet这三个，对于这三个接口，还可以获取不同类型元数据，通过元数据可以获得数据库信息。</p>
+<p><strong>数据库元数据</strong> ( DatabaseMetaData ) : 是由Connection对象通过getMetaData方法获取，主要是封装了数据库本身的一些整体综合信息，例如数据库产品名称，数据库版本号，数据库URL，是否支持事务等等。</p>
+<h4 id="5-3-1-数据库元数据常用方法"><a href="#5-3-1-数据库元数据常用方法" class="headerlink" title="5.3.1 数据库元数据常用方法"></a>5.3.1 数据库元数据常用方法</h4><ul>
+<li>getDatabaseProductName: 获取数据库的产品名称</li>
+<li>getDatabaseProductName: 获取数据库的版本号</li>
+<li>getUserName: 获取数据库的用户名</li>
+<li>getURL: 获取数据库连接的URL</li>
+<li>getDriverName: 获取数据库驱动名称</li>
+<li>driverVersion: 获取数据库的驱动版本号</li>
+<li>isReadOnly: 查看数据库是否只读</li>
+<li>supportTransactions: 查看数据库是否支持事务</li>
+</ul>
+<h4 id="5-3-2-构建环境"><a href="#5-3-2-构建环境" class="headerlink" title="5.3.2 构建环境"></a>5.3.2 构建环境</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-3-3-获取数据库基本信息"><a href="#5-3-3-获取数据库基本信息" class="headerlink" title="5.3.3 获取数据库基本信息"></a>5.3.3 获取数据库基本信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDatabase</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    String driver=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">    String url = <span class="string">&quot;jdbc:mysql://localhost:3306?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">    String username =<span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">    properties.put(<span class="string">&quot;remarksReporting&quot;</span>,<span class="string">&quot;true&quot;</span>);<span class="comment">//获取数据库的备注信息</span></span><br><span class="line">    properties.put(<span class="string">&quot;user&quot;</span>,username);</span><br><span class="line">    properties.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//1. 获取连接</span></span><br><span class="line">        Class.forName(driver);</span><br><span class="line">        <span class="comment">//此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.获取元数据</span></span><br><span class="line">        DatabaseMetaData metaData = connection.getMetaData();</span><br><span class="line">        <span class="comment">//3.获取数据库基本信息</span></span><br><span class="line">        System.out.println(metaData.getUserName());</span><br><span class="line">        <span class="comment">//是否支持事务</span></span><br><span class="line">        System.out.println(metaData.supportsTransactions());</span><br><span class="line">				<span class="comment">//获取数据库名称</span></span><br><span class="line">        System.out.println(metaData.getDatabaseProductName());</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">        throwables.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-3-4-获取所有数据库名称"><a href="#5-3-4-获取所有数据库名称" class="headerlink" title="5.3.4 获取所有数据库名称"></a>5.3.4 获取所有数据库名称</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDatabase</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    String driver=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">    String url = <span class="string">&quot;jdbc:mysql://localhost:3306?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">    String username =<span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">    properties.put(<span class="string">&quot;remarksReporting&quot;</span>,<span class="string">&quot;true&quot;</span>);<span class="comment">//获取数据库的备注信息</span></span><br><span class="line">    properties.put(<span class="string">&quot;user&quot;</span>,username);</span><br><span class="line">    properties.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//1. 获取连接</span></span><br><span class="line">        Class.forName(driver);</span><br><span class="line">        <span class="comment">//此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.获取元数据</span></span><br><span class="line">        DatabaseMetaData metaData = connection.getMetaData();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.获取数据库列表</span></span><br><span class="line">        ResultSet rs = metaData.getCatalogs();</span><br><span class="line">        <span class="keyword">while</span>(rs.next())&#123;</span><br><span class="line">            System.out.println(rs.getString(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        rs.close();</span><br><span class="line">        connection.close();</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">        throwables.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-3-5-获取指定数据库表信息"><a href="#5-3-5-获取指定数据库表信息" class="headerlink" title="5.3.5 获取指定数据库表信息"></a>5.3.5 获取指定数据库表信息</h4><blockquote>
+<p>ResultSet getTables(String catalog, String schemaPattern,String tableNamePattern, String types[]) </p>
+</blockquote>
+<ul>
+<li>catalog <ul>
+<li>mysql: 当前操作的数据库</li>
+<li>oralce: 当前操作的数据库</li>
+</ul>
+</li>
+<li>schemaPattern<ul>
+<li>mysql: null</li>
+<li>oracle: 用户名(大写)</li>
+</ul>
+</li>
+<li>tableNamePattern<ul>
+<li>null: 查询所有表</li>
+<li>非空: 查询目标表</li>
+</ul>
+</li>
+<li>types<ul>
+<li>TABLE: 表</li>
+<li>VIEW: 视图</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDatabase</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  String driver=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">  String url = <span class="string">&quot;jdbc:mysql://localhost:3306?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">  String username =<span class="string">&quot;root&quot;</span>;</span><br><span class="line">  String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">  Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">  properties.put(<span class="string">&quot;remarksReporting&quot;</span>,<span class="string">&quot;true&quot;</span>);<span class="comment">//获取数据库的备注信息</span></span><br><span class="line">  properties.put(<span class="string">&quot;user&quot;</span>,username);</span><br><span class="line">  properties.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//1. 获取连接</span></span><br><span class="line">    Class.forName(driver);</span><br><span class="line">    <span class="comment">//此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span></span><br><span class="line">    Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.获取元数据</span></span><br><span class="line">    DatabaseMetaData metaData = connection.getMetaData();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//ResultSet getTables(String catalog, String schemaPattern,String tableNamePattern, String types[]) throws SQLException;</span></span><br><span class="line">    ResultSet tables = metaData.getTables(<span class="string">&quot;abc&quot;</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">new</span> String[]&#123;<span class="string">&quot;TABLE&quot;</span>&#125;);</span><br><span class="line">    <span class="keyword">while</span>(tables.next())&#123;</span><br><span class="line">      System.out.println(tables.getString(<span class="string">&quot;TABLE_NAME&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">    throwables.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-3-6-获取表中的字段信息"><a href="#5-3-6-获取表中的字段信息" class="headerlink" title="5.3.6 获取表中的字段信息"></a>5.3.6 获取表中的字段信息</h4><blockquote>
+<p>ResultSet getColumns(String catalog, String schemaPattern,String tableNamePattern, String columnNamePattern)</p>
+<p><strong>可以debug去看</strong></p>
+</blockquote>
+<ul>
+<li>catalog<ul>
+<li>mysql: 当前数据库</li>
+<li>oracle: 当前数据库</li>
+</ul>
+</li>
+<li>schemaPattern<ul>
+<li>mysql: none</li>
+<li>oracle: 用户名(大写)</li>
+</ul>
+</li>
+<li>tableNamePattern: 表名</li>
+<li>columnNamePattern<ul>
+<li>null: 所有列名</li>
+<li>非空: 某一列名</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TABLE_CAT</td>
+<td>表的目录</td>
+</tr>
+<tr>
+<td>TABLE_SCHEM</td>
+<td>模式的目录</td>
+</tr>
+<tr>
+<td>TABLE_NAME</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>COLUMN_NAME</td>
+<td>列名</td>
+</tr>
+<tr>
+<td>TYPE_NAME</td>
+<td>列的数据类型名称</td>
+</tr>
+<tr>
+<td>COLUMN_SIZE</td>
+<td>列的大小</td>
+</tr>
+<tr>
+<td>COLUMN_DEF</td>
+<td>列的默认值</td>
+</tr>
+<tr>
+<td>ORDINAL_POSITION</td>
+<td>表中列的索引</td>
+</tr>
+<tr>
+<td>IS_AUTOINCREMENT</td>
+<td>如果列是自动递增的，则返回yes；如果列不是自动递增的，则返回false；如果无法确定，则返回一个空的String（“”）。</td>
+</tr>
+<tr>
+<td>IS_GENERATEDCOLUMN</td>
+<td>如果该列是生成的列，则返回yes；如果该列不是生成的列，则返回false；如果无法确定，则返回一个空的String（“”）。</td>
+</tr>
+<tr>
+<td>REMARKS</td>
+<td>列备注</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testDatabase</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        String driver=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">        String url = <span class="string">&quot;jdbc:mysql://localhost:3306?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">        String username =<span class="string">&quot;root&quot;</span>;</span><br><span class="line">        String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.put(<span class="string">&quot;remarksReporting&quot;</span>,<span class="string">&quot;true&quot;</span>);<span class="comment">//获取数据库的备注信息</span></span><br><span class="line">        properties.put(<span class="string">&quot;user&quot;</span>,username);</span><br><span class="line">        properties.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1. 获取连接</span></span><br><span class="line">            Class.forName(driver);</span><br><span class="line">            <span class="comment">//此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span></span><br><span class="line">            Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//2.获取元数据</span></span><br><span class="line">            DatabaseMetaData metaData = connection.getMetaData();</span><br><span class="line">          </span><br><span class="line">            ResultSet book = metaData.getColumns(<span class="string">&quot;abc&quot;</span>, <span class="keyword">null</span>, <span class="string">&quot;book&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">while</span>(book.next())&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;列名&quot;</span>+book.getString(<span class="string">&quot;COLUMN_NAME&quot;</span>));</span><br><span class="line">                System.out.println(<span class="string">&quot;类型名称&quot;</span>+book.getString(<span class="string">&quot;TYPE_NAME&quot;</span>));</span><br><span class="line">                System.out.println(<span class="string">&quot;字段大小&quot;</span>+book.getString(<span class="string">&quot;COLUMN_SIZE&quot;</span>));</span><br><span class="line">                System.out.println(<span class="string">&quot;备注&quot;</span>+book.getString(<span class="string">&quot;REMARKS&quot;</span>));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">            throwables.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-4-参数元数据"><a href="#5-4-参数元数据" class="headerlink" title="5.4 参数元数据"></a>5.4 参数元数据</h3><p><strong>参数元数据</strong> ( ParameterMetaData ):是由PreparedStatement对象通过getParameterMetaData方法获取而来，主要是针对PreparedStatement对象和其预编译的SQL语句提供一些信息，ParameterMetaData能提供占位符参数的个数，获取指定位置占位符的SQL类型等。</p>
+<p><em>方法有多个，但是有作用的只有这一个，其余的不准确</em> </p>
+<ul>
+<li>getParameterCount: 获取预编译SQL语句中占位符参数的个数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreparedStatementTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String driver=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">    String url = <span class="string">&quot;jdbc:mysql://localhost:3306/x-admin?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">    String username =<span class="string">&quot;root&quot;</span>;</span><br><span class="line">    String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">    Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">    properties.put(<span class="string">&quot;remarksReporting&quot;</span>,<span class="string">&quot;true&quot;</span>);<span class="comment">//获取数据库的备注信息</span></span><br><span class="line">    properties.put(<span class="string">&quot;user&quot;</span>,username);</span><br><span class="line">    properties.put(<span class="string">&quot;password&quot;</span>,password);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//1. 获取连接</span></span><br><span class="line">        Class.forName(driver);</span><br><span class="line">        <span class="comment">//此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line">        <span class="comment">//预编译SQL</span></span><br><span class="line">        String sql = <span class="string">&quot;select * from book where id=?&quot;</span>;</span><br><span class="line">        PreparedStatement preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">        preparedStatement.setString(<span class="number">1</span>,<span class="string">&quot;2&quot;</span>);</span><br><span class="line">        <span class="comment">//获取参数元数据</span></span><br><span class="line">        ParameterMetaData parameterMetaData = preparedStatement.getParameterMetaData();</span><br><span class="line">        <span class="keyword">int</span> parameterCount = parameterMetaData.getParameterCount();</span><br><span class="line">        System.out.println(parameterCount);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException throwables) &#123;</span><br><span class="line">        throwables.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-5-结果集元数据"><a href="#5-5-结果集元数据" class="headerlink" title="5.5 结果集元数据"></a>5.5 结果集元数据</h3><p><strong>结果集元数据</strong>( ResultSetMetaData ): 是由ResultSet对象通过getMetaData方法获取而来，主要是针对由数据库执行的SQL脚本命令获取的结果集对象ResultSet中提供的一些信息，比如结果集中的列数、指定列的名称、指定列的SQL类型等等，可以说这个事对于框架来说非常重要的一个对象。</p>
+<p>以下是有关ResultSetMetaData的常用方法:</p>
+<ul>
+<li>getColumnCount：获取结果集中列的个数</li>
+<li>getColumnType：获取指定列的SQL类型对应于Java中Types类的字段</li>
+<li>getColumnTypeName：获取指定列的SQL类型</li>
+<li>getClassName：获取指定列SQL类型对应于Java中的类型(包加类名)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">void PreparedStatementTest()&#123;</span><br><span class="line">  String driver=&quot;com.mysql.cj.jdbc.Driver&quot;;</span><br><span class="line">  String url = &quot;jdbc:mysql://localhost:3306/x-admin?useUnicode=true&amp;characterEncoding=utf8&quot;;</span><br><span class="line">  String username =&quot;root&quot;;</span><br><span class="line">  String password = &quot;123456&quot;;</span><br><span class="line">  Properties properties = new Properties();</span><br><span class="line">  properties.put(&quot;remarksReporting&quot;,&quot;true&quot;);//获取数据库的备注信息</span><br><span class="line">  properties.put(&quot;user&quot;,username);</span><br><span class="line">  properties.put(&quot;password&quot;,password);</span><br><span class="line">  try &#123;</span><br><span class="line">    //1. 获取连接</span><br><span class="line">    Class.forName(driver);</span><br><span class="line">    //此处需要使用properties配置文件的形式，不然获取备注的时候会为空</span><br><span class="line">    Connection connection = DriverManager.getConnection(url,properties);</span><br><span class="line">    //预编译SQL</span><br><span class="line">    String sql = &quot;select * from book where id=?&quot;;</span><br><span class="line">    PreparedStatement preparedStatement = connection.prepareStatement(sql);</span><br><span class="line">    preparedStatement.setString(1,&quot;2&quot;);</span><br><span class="line">    </span><br><span class="line">    ResultSet resultSet = preparedStatement.executeQuery();</span><br><span class="line">    //获取结果集元数据</span><br><span class="line">    ResultSetMetaData metaData = resultSet.getMetaData();</span><br><span class="line">    //获取查询字段个数</span><br><span class="line">    int columnCount = metaData.getColumnCount();</span><br><span class="line">    System.out.println(columnCount);</span><br><span class="line">    //获取所有的返回值列名</span><br><span class="line">    for (int i = 1;i &lt;= columnCount; i++) &#123;</span><br><span class="line">    String columnName = metaData.getColumnName(i);</span><br><span class="line">    //获取字段类型 sql类型(数字=字段)</span><br><span class="line">    int columnType = metaData.getColumnType(i);</span><br><span class="line">    //获取列类型名字</span><br><span class="line">    String columnTypeName = metaData.getColumnTypeName(i);</span><br><span class="line">    //获取Java类型</span><br><span class="line">    String columnClassName = metaData.getColumnClassName(i);</span><br><span class="line">    System.out.println(columnName+&quot;--&quot;+columnType+&quot;---&quot;+columnTypeName+&quot;--&quot;+columnClassName);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line"> 		 e.printStackTrace();</span><br><span class="line">  &#125; catch (SQLException throwables) &#123;</span><br><span class="line">  	throwables.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//结果</span><br><span class="line">//3</span><br><span class="line">//id---5---BIGINT--java.lang.Long</span><br><span class="line">//name--12---VARCHAR--java.lang.String</span><br><span class="line">//price--3---DECIMAL--java.math.BigDecimal</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-代码生成器分析逻辑"><a href="#6-代码生成器分析逻辑" class="headerlink" title="6. 代码生成器分析逻辑"></a>6. 代码生成器分析逻辑</h2><ol>
+<li>用户填写的数据库信息，工程搭建信息需要构造到实体类对象中方便操作</li>
+<li>数据库表信息，数据库字段信息需要构造到实体类中</li>
+<li>构造Freemarker数据模型，将数据库表对象和基本配置存入到Map集合中</li>
+<li>借助Freemarker完成代码生成</li>
+<li>自定义公共代码模块</li>
+</ol>
+<h2 id="7-抽象出的实体类"><a href="#7-抽象出的实体类" class="headerlink" title="7.抽象出的实体类"></a>7.抽象出的实体类</h2><h3 id="7-1-数据库实体类"><a href="#7-1-数据库实体类" class="headerlink" title="7.1 数据库实体类"></a>7.1 数据库实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Database</span> </span>&#123;</span><br><span class="line">    <span class="comment">//数据库类型</span></span><br><span class="line">    <span class="keyword">private</span> String dbType;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//驱动</span></span><br><span class="line">    <span class="keyword">private</span> String driver;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Database</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="string">&quot;MYSQL&quot;</span>,<span class="string">&quot;127.0.0.1&quot;</span>,<span class="string">&quot;3306&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Database</span><span class="params">(String dbType,String db)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(dbType,<span class="string">&quot;127.0.0.1&quot;</span>,<span class="string">&quot;3306&quot;</span>,db);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Database</span><span class="params">(String dbType)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(dbType,<span class="string">&quot;127.0.0.1&quot;</span>,<span class="string">&quot;3306&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Database</span><span class="params">(String dbType,String ip,String port,String db)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dbType = dbType;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;MYSQL&quot;</span>.endsWith(dbType.toUpperCase()))&#123;</span><br><span class="line">            <span class="keyword">this</span>.driver = <span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>;</span><br><span class="line">            <span class="keyword">this</span>.url = <span class="string">&quot;jdbc:mysql://&quot;</span>+ip+<span class="string">&quot;:&quot;</span>+port+<span class="string">&quot;/&quot;</span>+db+<span class="string">&quot;?useUnicode=true&amp;amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.driver = <span class="string">&quot;oracle.jdbc.driver.OracleDriver&quot;</span>;</span><br><span class="line">            <span class="keyword">this</span>.url = <span class="string">&quot;jdbc:oracle:thin:@&quot;</span>+ip+<span class="string">&quot;:&quot;</span>+port+<span class="string">&quot;:&quot;</span>+db;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-2-表实体类"><a href="#7-2-表实体类" class="headerlink" title="7.2  表实体类"></a>7.2  表实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Table</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String tableName;<span class="comment">//表名称</span></span><br><span class="line">    <span class="keyword">private</span> String dealingTableName; <span class="comment">//处理后的表名称</span></span><br><span class="line">    <span class="keyword">private</span> String comment; <span class="comment">//介绍</span></span><br><span class="line">    <span class="keyword">private</span> String key; <span class="comment">//主键</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Column&gt; columns;<span class="comment">//列集合</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-3-列实体类"><a href="#7-3-列实体类" class="headerlink" title="7.3 列实体类"></a>7.3 列实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Column</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String columnName;<span class="comment">//主键</span></span><br><span class="line">    <span class="keyword">private</span> String DealingColumnName;<span class="comment">//列名称(处理后的列名称)</span></span><br><span class="line">    <span class="keyword">private</span> String columnType; <span class="comment">//列类型</span></span><br><span class="line">    <span class="keyword">private</span> String columnDbType;<span class="comment">//列数据库类型</span></span><br><span class="line">    <span class="keyword">private</span> String columnComment; <span class="comment">//列备注</span></span><br><span class="line">    <span class="keyword">private</span> String columnKey; <span class="comment">//是否为主键</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/zfb.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/09/java-01/">Java核心机制(JVM、GC)-01</a>
-    </h1>
-  
-
-
-  <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/11/09/java-01/" class="pageViews">0</span>次
-  </a>
-
-
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">冲击大厂</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java语言基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java代码生成器</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://xing-yu-chen.github.io/2021/12/18/JavaGenerator/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2021/12/20/dns/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DNS服务器的配置
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2021/12/05/regex-learn/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则表达式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8FreeMarker"><span class="toc-number">1.</span> <span class="toc-text">1. 为什么用FreeMarker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E5%9C%A8Java%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">2. 如何在Java项目中使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96-pom-xml"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 引入依赖(pom.xml)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%96%87%E4%BB%B6%E6%A8%A1%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 文件模版</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%88%9B%E5%BB%BA%E6%A8%A1%E7%89%88%E6%96%87%E4%BB%B6-hello-ftl"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 创建模版文件(hello.ftl)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E7%AE%80%E5%8D%95%E7%BC%96%E5%86%99%E6%A8%A1%E7%89%88%E5%86%85%E5%AE%B9-hello-ftl"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.2 简单编写模版内容(hello.ftl)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81-Test-java"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.2.3 编写测试代码(Test.java)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E7%89%88"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 字符串模版</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 编写测试代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-FreeMarker-FTL%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">3. FreeMarker FTL常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-if%E6%8C%87%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 if指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99"><span class="toc-number">3.1.1.</span> <span class="toc-text">规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-list%E6%8C%87%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 list指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-include%E6%8C%87%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 include指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-assign%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 assign指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99-3"><span class="toc-number">3.4.1.</span> <span class="toc-text">规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-3"><span class="toc-number">3.4.2.</span> <span class="toc-text">测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4.内置函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.</span> <span class="toc-text">5. 数据库元数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 什么是元数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 数据库元数据的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 如何获取元数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%83%E6%95%B0%E6%8D%AE%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">5.3.1.</span> <span class="toc-text">5.3.1 数据库元数据常用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2-%E6%9E%84%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">5.3.2.</span> <span class="toc-text">5.3.2 构建环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-3-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">5.3.3.</span> <span class="toc-text">5.3.3 获取数据库基本信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-4-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E7%A7%B0"><span class="toc-number">5.3.4.</span> <span class="toc-text">5.3.4 获取所有数据库名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-5-%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">5.3.5.</span> <span class="toc-text">5.3.5 获取指定数据库表信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-6-%E8%8E%B7%E5%8F%96%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E4%BF%A1%E6%81%AF"><span class="toc-number">5.3.6.</span> <span class="toc-text">5.3.6 获取表中的字段信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%8F%82%E6%95%B0%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 参数元数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E7%BB%93%E6%9E%9C%E9%9B%86%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 结果集元数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%E5%88%86%E6%9E%90%E9%80%BB%E8%BE%91"><span class="toc-number">6.</span> <span class="toc-text">6. 代码生成器分析逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8A%BD%E8%B1%A1%E5%87%BA%E7%9A%84%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">7.</span> <span class="toc-text">7.抽象出的实体类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 数据库实体类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E8%A1%A8%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">7.2.</span> <span class="toc-text">7.2  表实体类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E5%88%97%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 列实体类</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -305,9 +629,9 @@
     var yiliaConfig = {
         mathjax: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         open_in_new: false,
         toc_hide_index: true,
@@ -462,7 +786,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,19 +802,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java语言基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java学习资料</a>
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,6 +811,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java代码生成器</a>
               </li>
              
               <li class="article-tag-list-item">
