@@ -70,7 +70,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 18
+                         总文章数 19
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -169,6 +169,150 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-android-learn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/24/android-learn/">安卓逆向学习</a>
+    </h1>
+  
+
+
+  <a href="javascript:;" class="archive-article-date">
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2022/04/24/android-learn/" class="pageViews">0</span>次
+  </a>
+
+
+<!--显示阅读次数完毕-->
+        
+        <a href="/2022/04/24/android-learn/" class="archive-article-date">
+  	<time datetime="2022-04-24T06:05:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Android类加载机制"><a href="#1-Android类加载机制" class="headerlink" title="1. Android类加载机制"></a>1. Android类加载机制</h2><h3 id="1-1-JVM类加载器-ClassLoader"><a href="#1-1-JVM类加载器-ClassLoader" class="headerlink" title="1.1 JVM类加载器(ClassLoader)"></a>1.1 JVM类加载器(ClassLoader)</h3><ol>
+<li>Bootstrap ClassLoader =&gt; C++实现</li>
+<li>Extension ClassLoader =&gt; ExtClassLoader实现类</li>
+<li>Application ClassLoader =&gt; AppClassLoader实现类</li>
+<li>自定义ClassLoader(只需要继承java.lang.ClassLoader类)</li>
+</ol>
+<p><img src="/2022/04/24/android-learn/image-20220424140832593.png" alt="image-20220424140832593"></p>
+<h4 id="双亲委派"><a href="#双亲委派" class="headerlink" title="双亲委派"></a>双亲委派</h4><h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p>如果一个类收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父亲的加载器去执行，如果父亲加载器还存在着其父类加载器，则进一步向上委托，依次递归，请求最终到达顶层的启动类加载器，如果父类加载器可以完成加载任务，就成功返回，倘若父亲加载器无法完成此任务，子类才会自己去尝试加载。</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>避免重复加载，如果已经加载过一次Class，可以直接读取已经加载过的Class</li>
+<li>更加安全，无法自定义类来代替系统的类，防止核心API库被篡改</li>
+</ul>
+<h4 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h4><h5 id="隐式加载"><a href="#隐式加载" class="headerlink" title="隐式加载"></a>隐式加载</h5><ul>
+<li>创建类的实例</li>
+<li>访问类的静态变量、为静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>使用反射的方式强制创建某个类或者java.long.Class对象</li>
+<li>初始化某个类的子类</li>
+</ul>
+<h5 id="显式加载"><a href="#显式加载" class="headerlink" title="显式加载"></a>显式加载</h5><ul>
+<li>使用LoadClass()加载</li>
+<li>使用forName()加载</li>
+</ul>
+<h4 id="类加载步骤"><a href="#类加载步骤" class="headerlink" title="类加载步骤"></a>类加载步骤</h4><ol>
+<li>装载：查找和导入Class文件</li>
+<li>链接：解析步骤可以选择<ul>
+<li>检查：检查载入的Class文件数据的正确性</li>
+<li>准备：给类的静态变量分配存储空间</li>
+<li>解析：将符号转为直接引用</li>
+</ul>
+</li>
+<li>初始化：调用<code>&lt;client&gt;</code>(编译器生成)函数，对静态变量，静态代码块的初始化工作</li>
+</ol>
+<h3 id="1-2-Android类加载"><a href="#1-2-Android类加载" class="headerlink" title="1.2. Android类加载"></a>1.2. Android类加载</h3><p><img src="/2022/04/24/android-learn/image-20220424142203568.png" alt="image-20220424142203568"></p>
+<h4 id="8个ClassLoader解析"><a href="#8个ClassLoader解析" class="headerlink" title="8个ClassLoader解析"></a>8个ClassLoader解析</h4><ul>
+<li>顶层ClassLoader：为抽象类</li>
+<li>BootClassLoader预加载常用类，单例模式。与Java 中的Bootstrap Class Loader不同，它并不是由C++实现，而是由代码实现。</li>
+<li>BaseDexClassLoader是PathClassLoader、DexClassLoader、InMemoryClassLoader的父类，<u>类加载的主要逻辑都是在BaseDexClassLoader中实现的</u>。<ul>
+<li>PathClassLoader是Android默认使用的类加载器，一个apk中的Activity等是在其中加载</li>
+<li>DexClassLoader可以加载任何目录下的dex/jar/apk/zip文件，比PathClassLoader更灵活，是实现插件化，热修复以及dex加壳的重点</li>
+<li>InMemoryClassLoader是Android8.0新引入，直接从内存中加载dex</li>
+</ul>
+</li>
+<li>SecureClassLoader继承抽象类ClassLoader，扩展ClassLoader在权限方面的功能，加强了安全性，其子类URLClassLoader是用URL路径从Jar文件中加载类和资源。</li>
+</ul>
+<h4 id="安卓源码分析"><a href="#安卓源码分析" class="headerlink" title="安卓源码分析"></a>安卓源码分析</h4><p><a target="_blank" rel="noopener" href="http://aospxref.com/android-12.0.0_r3/search?project=libcore&full=&defs=ClassLoader&refs=&path=&hist=&type=&xrd=&nn=1">安卓12的ClassLoader源码在线分析</a></p>
+<h5 id="ClassLoader-java"><a href="#ClassLoader-java" class="headerlink" title="ClassLoader.java"></a>ClassLoader.java</h5><p><img src="/2022/04/24/android-learn/image-20220424144516519.png" alt="image-20220424144516519"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于双亲委派机制，并且每个ClassLoader通过final只能赋值一次</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ClassLoader parent;</span><br></pre></td></tr></table></figure>
+
+<h5 id="BaseDexClassLoader-java"><a href="#BaseDexClassLoader-java" class="headerlink" title="BaseDexClassLoader.java"></a>BaseDexClassLoader.java</h5><p><img src="/2022/04/24/android-learn/image-20220424144755038.png" alt="image-20220424144755038"></p>
+<h5 id="ClassLoader实战查看"><a href="#ClassLoader实战查看" class="headerlink" title="ClassLoader实战查看"></a>ClassLoader实战查看</h5><blockquote>
+<p>验证双亲委派的关系</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClassLoader</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ClassLoader classLoader = MainActivity.class.getClassLoader();</span><br><span class="line">        System.out.println(<span class="string">&quot;this ClassLoader = &quot;</span>  + classLoader.toString());</span><br><span class="line">        ClassLoader parentClassLoader = classLoader.getParent();</span><br><span class="line">        <span class="keyword">while</span> (parentClassLoader != <span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this ClassLoader = &quot;</span> + classLoader + <span class="string">&quot;, Parent Class Loader = &quot;</span> + parentClassLoader);</span><br><span class="line">            classLoader = parentClassLoader;</span><br><span class="line">            parentClassLoader = classLoader.getParent();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;RootClassLoader&quot;</span> + classLoader);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/24/android-learn/image-20220424160747638.png" alt="image-20220424160747638"></p>
+<h5 id="DexClassLoader实战"><a href="#DexClassLoader实战" class="headerlink" title="DexClassLoader实战"></a>DexClassLoader实战</h5><ul>
+<li>首先加入SD卡读写权限<ul>
+<li><code>&lt;uses-permission-sdk-23 android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission-sdk-23&gt;</code></li>
+<li><code>&lt;uses-permission-sdk-23 android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission-sdk-23&gt;</code></li>
+</ul>
+</li>
+<li></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安卓逆向</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/24/android-learn/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-kali-learn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1884,88 +2028,6 @@
 
 
   
-    <article id="post-JavaGenerator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/18/JavaGenerator/">Java代码生成器01-FreeMarker+JDBC逆向</a>
-    </h1>
-  
-
-
-  <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/12/18/JavaGenerator/" class="pageViews">0</span>次
-  </a>
-
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2021/12/18/JavaGenerator/" class="archive-article-date">
-  	<time datetime="2021-12-17T19:18:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-为什么用FreeMarker"><a href="#1-为什么用FreeMarker" class="headerlink" title="1. 为什么用FreeMarker"></a>1. 为什么用FreeMarker</h2><p><strong>简介:</strong> FreeMarker 是一款 <em>模板引擎</em>： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
-<p><strong>总之:</strong> 就是使用FreeMarker可以基于模版生成我们所需要的任何文件，并且可以将我们需要的参数引入进去。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">小呆代码生成器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/18/JavaGenerator/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2145,6 +2207,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
@@ -2161,19 +2227,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">冲击大厂</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2185,6 +2247,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
@@ -2193,11 +2259,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">社工</a>
+                <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">kali</a>
+                <a href="javascript:void(0)" class="js-tag color3">社工</a>
               </li>
              
               <li class="article-tag-list-item">

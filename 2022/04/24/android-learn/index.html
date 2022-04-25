@@ -6,22 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://xing-yu-chen.github.io">
-  <title>JVM指令手册(字节码) | 小呆博客</title>
+  <title>安卓逆向学习 | 小呆博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="思维导图">
+  <meta name="description" content="1. Android类加载机制1.1 JVM类加载器(ClassLoader) Bootstrap ClassLoader &#x3D;&gt; C++实现 Extension ClassLoader &#x3D;&gt; ExtClassLoader实现类 Application ClassLoader &#x3D;&gt; AppClassLoader实现类 自定义ClassLoader(只需要继承java.lang.Cl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM指令手册(字节码)">
-<meta property="og:url" content="http://xing-yu-chen.github.io/2021/11/10/jvm-reder/index.html">
+<meta property="og:title" content="安卓逆向学习">
+<meta property="og:url" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/index.html">
 <meta property="og:site_name" content="小呆博客">
-<meta property="og:description" content="思维导图">
+<meta property="og:description" content="1. Android类加载机制1.1 JVM类加载器(ClassLoader) Bootstrap ClassLoader &#x3D;&gt; C++实现 Extension ClassLoader &#x3D;&gt; ExtClassLoader实现类 Application ClassLoader &#x3D;&gt; AppClassLoader实现类 自定义ClassLoader(只需要继承java.lang.Cl">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://xing-yu-chen.github.io/2021/11/10/jvm-reder/314515-20191231162820485-1508593648.png">
-<meta property="article:published_time" content="2021-11-09T17:38:59.000Z">
-<meta property="article:modified_time" content="2021-12-17T19:21:31.275Z">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424140832593.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424142203568.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424144516519.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424144755038.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424160747638.png">
+<meta property="article:published_time" content="2022-04-24T06:05:02.000Z">
+<meta property="article:modified_time" content="2022-04-24T09:30:58.611Z">
 <meta property="article:author" content="Small Dai">
-<meta property="article:tag" content="字节码">
+<meta property="article:tag" content="安卓逆向">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://xing-yu-chen.github.io/2021/11/10/jvm-reder/314515-20191231162820485-1508593648.png">
+<meta name="twitter:image" content="http://xing-yu-chen.github.io/2022/04/24/android-learn/image-20220424140832593.png">
   
     <link rel="alternative" href="/atom.xml" title="小呆博客" type="application/atom+xml">
   
@@ -168,881 +172,97 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-jvm-reder" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-android-learn" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JVM指令手册(字节码)
+      安卓逆向学习
     </h1>
   
 
 
   <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/11/10/jvm-reder/" class="pageViews">0</span>次
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2022/04/24/android-learn/" class="pageViews">0</span>次
   </a>
 
 
 <!--显示阅读次数完毕-->
         
-        <a href="/2021/11/10/jvm-reder/" class="archive-article-date">
-  	<time datetime="2021-11-09T17:38:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-10</time>
+        <a href="/2022/04/24/android-learn/" class="archive-article-date">
+  	<time datetime="2022-04-24T06:05:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2021/11/10/jvm-reder/314515-20191231162820485-1508593648.png" alt="img"></p>
-<br>
+        <h2 id="1-Android类加载机制"><a href="#1-Android类加载机制" class="headerlink" title="1. Android类加载机制"></a>1. Android类加载机制</h2><h3 id="1-1-JVM类加载器-ClassLoader"><a href="#1-1-JVM类加载器-ClassLoader" class="headerlink" title="1.1 JVM类加载器(ClassLoader)"></a>1.1 JVM类加载器(ClassLoader)</h3><ol>
+<li>Bootstrap ClassLoader =&gt; C++实现</li>
+<li>Extension ClassLoader =&gt; ExtClassLoader实现类</li>
+<li>Application ClassLoader =&gt; AppClassLoader实现类</li>
+<li>自定义ClassLoader(只需要继承java.lang.ClassLoader类)</li>
+</ol>
+<p><img src="/2022/04/24/android-learn/image-20220424140832593.png" alt="image-20220424140832593"></p>
+<h4 id="双亲委派"><a href="#双亲委派" class="headerlink" title="双亲委派"></a>双亲委派</h4><h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p>如果一个类收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父亲的加载器去执行，如果父亲加载器还存在着其父类加载器，则进一步向上委托，依次递归，请求最终到达顶层的启动类加载器，如果父类加载器可以完成加载任务，就成功返回，倘若父亲加载器无法完成此任务，子类才会自己去尝试加载。</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>避免重复加载，如果已经加载过一次Class，可以直接读取已经加载过的Class</li>
+<li>更加安全，无法自定义类来代替系统的类，防止核心API库被篡改</li>
+</ul>
+<h4 id="类加载时机"><a href="#类加载时机" class="headerlink" title="类加载时机"></a>类加载时机</h4><h5 id="隐式加载"><a href="#隐式加载" class="headerlink" title="隐式加载"></a>隐式加载</h5><ul>
+<li>创建类的实例</li>
+<li>访问类的静态变量、为静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>使用反射的方式强制创建某个类或者java.long.Class对象</li>
+<li>初始化某个类的子类</li>
+</ul>
+<h5 id="显式加载"><a href="#显式加载" class="headerlink" title="显式加载"></a>显式加载</h5><ul>
+<li>使用LoadClass()加载</li>
+<li>使用forName()加载</li>
+</ul>
+<h4 id="类加载步骤"><a href="#类加载步骤" class="headerlink" title="类加载步骤"></a>类加载步骤</h4><ol>
+<li>装载：查找和导入Class文件</li>
+<li>链接：解析步骤可以选择<ul>
+<li>检查：检查载入的Class文件数据的正确性</li>
+<li>准备：给类的静态变量分配存储空间</li>
+<li>解析：将符号转为直接引用</li>
+</ul>
+</li>
+<li>初始化：调用<code>&lt;client&gt;</code>(编译器生成)函数，对静态变量，静态代码块的初始化工作</li>
+</ol>
+<h3 id="1-2-Android类加载"><a href="#1-2-Android类加载" class="headerlink" title="1.2. Android类加载"></a>1.2. Android类加载</h3><p><img src="/2022/04/24/android-learn/image-20220424142203568.png" alt="image-20220424142203568"></p>
+<h4 id="8个ClassLoader解析"><a href="#8个ClassLoader解析" class="headerlink" title="8个ClassLoader解析"></a>8个ClassLoader解析</h4><ul>
+<li>顶层ClassLoader：为抽象类</li>
+<li>BootClassLoader预加载常用类，单例模式。与Java 中的Bootstrap Class Loader不同，它并不是由C++实现，而是由代码实现。</li>
+<li>BaseDexClassLoader是PathClassLoader、DexClassLoader、InMemoryClassLoader的父类，<u>类加载的主要逻辑都是在BaseDexClassLoader中实现的</u>。<ul>
+<li>PathClassLoader是Android默认使用的类加载器，一个apk中的Activity等是在其中加载</li>
+<li>DexClassLoader可以加载任何目录下的dex/jar/apk/zip文件，比PathClassLoader更灵活，是实现插件化，热修复以及dex加壳的重点</li>
+<li>InMemoryClassLoader是Android8.0新引入，直接从内存中加载dex</li>
+</ul>
+</li>
+<li>SecureClassLoader继承抽象类ClassLoader，扩展ClassLoader在权限方面的功能，加强了安全性，其子类URLClassLoader是用URL路径从Jar文件中加载类和资源。</li>
+</ul>
+<h4 id="安卓源码分析"><a href="#安卓源码分析" class="headerlink" title="安卓源码分析"></a>安卓源码分析</h4><p><a target="_blank" rel="noopener" href="http://aospxref.com/android-12.0.0_r3/search?project=libcore&full=&defs=ClassLoader&refs=&path=&hist=&type=&xrd=&nn=1">安卓12的ClassLoader源码在线分析</a></p>
+<h5 id="ClassLoader-java"><a href="#ClassLoader-java" class="headerlink" title="ClassLoader.java"></a>ClassLoader.java</h5><p><img src="/2022/04/24/android-learn/image-20220424144516519.png" alt="image-20220424144516519"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于双亲委派机制，并且每个ClassLoader通过final只能赋值一次</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ClassLoader parent;</span><br></pre></td></tr></table></figure>
 
-<span id="more"></span>
+<h5 id="BaseDexClassLoader-java"><a href="#BaseDexClassLoader-java" class="headerlink" title="BaseDexClassLoader.java"></a>BaseDexClassLoader.java</h5><p><img src="/2022/04/24/android-learn/image-20220424144755038.png" alt="image-20220424144755038"></p>
+<h5 id="ClassLoader实战查看"><a href="#ClassLoader实战查看" class="headerlink" title="ClassLoader实战查看"></a>ClassLoader实战查看</h5><blockquote>
+<p>验证双亲委派的关系</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testClassLoader</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ClassLoader classLoader = MainActivity.class.getClassLoader();</span><br><span class="line">        System.out.println(<span class="string">&quot;this ClassLoader = &quot;</span>  + classLoader.toString());</span><br><span class="line">        ClassLoader parentClassLoader = classLoader.getParent();</span><br><span class="line">        <span class="keyword">while</span> (parentClassLoader != <span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;this ClassLoader = &quot;</span> + classLoader + <span class="string">&quot;, Parent Class Loader = &quot;</span> + parentClassLoader);</span><br><span class="line">            classLoader = parentClassLoader;</span><br><span class="line">            parentClassLoader = classLoader.getParent();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;RootClassLoader&quot;</span> + classLoader);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-栈和局部变量操作"><a href="#1-栈和局部变量操作" class="headerlink" title="1.栈和局部变量操作"></a>1.栈和局部变量操作</h2><h3 id="1-1-将常量压入栈的指令"><a href="#1-1-将常量压入栈的指令" class="headerlink" title="1.1 将常量压入栈的指令"></a>1.1 将常量压入栈的指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义(n=第n个,从0开始)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">aconst_null</td>
-<td align="center">将null对象引用压入栈</td>
-</tr>
-<tr>
-<td align="center">iconst_m1</td>
-<td align="center">将int类型常量-1压入栈</td>
-</tr>
-<tr>
-<td align="center">iconst_(n)</td>
-<td align="center">将int类型常量(n)压入栈</td>
-</tr>
-<tr>
-<td align="center">lconst_(n)</td>
-<td align="center">将long类型常量(n)压入栈</td>
-</tr>
-<tr>
-<td align="center">fconst_(n)</td>
-<td align="center">将float类型常量(n)压入栈</td>
-</tr>
-<tr>
-<td align="center">dconst_(n)</td>
-<td align="center">将double类型常量(n)压入栈</td>
-</tr>
-<tr>
-<td align="center">bipush</td>
-<td align="center">将一个8位带符号整数压入栈</td>
-</tr>
-<tr>
-<td align="center">sipush</td>
-<td align="center">将16位带符号整数压入栈</td>
-</tr>
-<tr>
-<td align="center">ldc</td>
-<td align="center">把常量池中的项压入栈</td>
-</tr>
-<tr>
-<td align="center">ldc_w</td>
-<td align="center">把常量池中的项压入栈（使用宽索引）</td>
-</tr>
-<tr>
-<td align="center">ldc2_w</td>
-<td align="center">把常量池中long类型或者double类型的项压入栈（使用宽索引）</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="1-2-从栈中的局部变量中装载值的指令"><a href="#1-2-从栈中的局部变量中装载值的指令" class="headerlink" title="1.2 从栈中的局部变量中装载值的指令"></a>1.2 从栈中的局部变量中装载值的指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义(n=第n个,从0开始)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">iload</td>
-<td align="center">从局部变量中装载int类型值</td>
-</tr>
-<tr>
-<td align="center">lload</td>
-<td align="center">从局部变量中装载long类型值</td>
-</tr>
-<tr>
-<td align="center">fload</td>
-<td align="center">从局部变量中装载float类型值</td>
-</tr>
-<tr>
-<td align="center">dload</td>
-<td align="center">从局部变量中装载double类型值</td>
-</tr>
-<tr>
-<td align="center">aload</td>
-<td align="center">从局部变量中装载引用类型值（refernce）</td>
-</tr>
-<tr>
-<td align="center">iload_(n)</td>
-<td align="center">从局部变量(n)中装载int类型值</td>
-</tr>
-<tr>
-<td align="center">lload_(n)</td>
-<td align="center">从局部变量(n)中装载long类型值</td>
-</tr>
-<tr>
-<td align="center">fload_(n)</td>
-<td align="center">从局部变量(n)中装载float类型值</td>
-</tr>
-<tr>
-<td align="center">dload_(n)</td>
-<td align="center">从局部变量(n)中装载double类型值</td>
-</tr>
-<tr>
-<td align="center">aload_(0)</td>
-<td align="center">从局部变量(n)中装载引用类型值</td>
-</tr>
-<tr>
-<td align="center">iaload</td>
-<td align="center">从数组中装载int类型值</td>
-</tr>
-<tr>
-<td align="center">laload</td>
-<td align="center">从数组中装载long类型值</td>
-</tr>
-<tr>
-<td align="center">faload</td>
-<td align="center">从数组中装载float类型值</td>
-</tr>
-<tr>
-<td align="center">daload</td>
-<td align="center">从数组中装载double类型值</td>
-</tr>
-<tr>
-<td align="center">aaload</td>
-<td align="center">从数组中装载引用类型值</td>
-</tr>
-<tr>
-<td align="center">baload</td>
-<td align="center">从数组中装载byte类型或boolean类型值</td>
-</tr>
-<tr>
-<td align="center">caload</td>
-<td align="center">从数组中装载char类型值</td>
-</tr>
-<tr>
-<td align="center">saload</td>
-<td align="center">从数组中装载short类型值</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="1-3将栈中的值存入局部变量的指令"><a href="#1-3将栈中的值存入局部变量的指令" class="headerlink" title="1.3将栈中的值存入局部变量的指令"></a>1.3将栈中的值存入局部变量的指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义(n=第n个,从0开始)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">istore</td>
-<td align="center">将int类型值存入局部变量</td>
-</tr>
-<tr>
-<td align="center">lstore</td>
-<td align="center">将long类型值存入局部变量</td>
-</tr>
-<tr>
-<td align="center">fstore</td>
-<td align="center">将float类型值存入局部变量</td>
-</tr>
-<tr>
-<td align="center">dstore</td>
-<td align="center">将double类型值存入局部变量</td>
-</tr>
-<tr>
-<td align="center">astore</td>
-<td align="center">将将引用类型或returnAddress类型值存入局部变量</td>
-</tr>
-<tr>
-<td align="center">istore_(n)</td>
-<td align="center">将int类型值存入局部变量(n)</td>
-</tr>
-<tr>
-<td align="center">lstore_(n)</td>
-<td align="center">将long类型值存入局部变量(n)</td>
-</tr>
-<tr>
-<td align="center">fstore_(n)</td>
-<td align="center">将float类型值存入局部变量(n)</td>
-</tr>
-<tr>
-<td align="center">dstore_(n)</td>
-<td align="center">将double类型值存入局部变量(n)</td>
-</tr>
-<tr>
-<td align="center">astore_(n)</td>
-<td align="center">将引用类型或returnAddress类型值存入局部变量(n)</td>
-</tr>
-<tr>
-<td align="center">iastore</td>
-<td align="center">将int类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">lastore</td>
-<td align="center">将long类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">fastore</td>
-<td align="center">将float类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">dastore</td>
-<td align="center">将double类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">aastore</td>
-<td align="center">将引用类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">bastore</td>
-<td align="center">将byte类型或者boolean类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">castore</td>
-<td align="center">将char类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">sastore</td>
-<td align="center">将short类型值存入数组中</td>
-</tr>
-<tr>
-<td align="center">wide</td>
-<td align="center">使用附加字节扩展局部变量索引</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="1-4-通用-无类型-栈操作"><a href="#1-4-通用-无类型-栈操作" class="headerlink" title="1.4 通用(无类型)栈操作"></a>1.4 通用(无类型)栈操作</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">nop</td>
-<td align="center">不做任何操作</td>
-</tr>
-<tr>
-<td align="center">pop</td>
-<td align="center">弹出栈顶端一个字长的内容</td>
-</tr>
-<tr>
-<td align="center">pop2</td>
-<td align="center">弹出栈顶端两个字长的内容</td>
-</tr>
-<tr>
-<td align="center">dup</td>
-<td align="center">复制栈顶部一个字长内容</td>
-</tr>
-<tr>
-<td align="center">dup_x1</td>
-<td align="center">复制栈顶部一个字长的内容，然后将复制内容及原来弹出的两个字长的内容压入栈</td>
-</tr>
-<tr>
-<td align="center">dup_x2</td>
-<td align="center">复制栈顶部一个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈</td>
-</tr>
-<tr>
-<td align="center">dup2</td>
-<td align="center">复制栈顶部两个字长内容</td>
-</tr>
-<tr>
-<td align="center">dup2_x1</td>
-<td align="center">复制栈顶部两个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈</td>
-</tr>
-<tr>
-<td align="center">dup2_x2</td>
-<td align="center">复制栈顶部两个字长的内容，然后将复制内容及原来弹出的四个字长的内容压入栈</td>
-</tr>
-<tr>
-<td align="center">swap</td>
-<td align="center">交换栈顶部两个字长内容</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="2-类型转换"><a href="#2-类型转换" class="headerlink" title="2.类型转换"></a>2.类型转换</h2><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">i2l</td>
-<td align="center">把int类型的数据转化为long类型</td>
-</tr>
-<tr>
-<td align="center">i2f</td>
-<td align="center">把int类型的数据转化为float类型</td>
-</tr>
-<tr>
-<td align="center">i2d</td>
-<td align="center">把int类型的数据转化为double类型</td>
-</tr>
-<tr>
-<td align="center">l2i</td>
-<td align="center">把long类型的数据转化为int类型</td>
-</tr>
-<tr>
-<td align="center">l2f</td>
-<td align="center">把long类型的数据转化为float类型</td>
-</tr>
-<tr>
-<td align="center">l2d</td>
-<td align="center">把long类型的数据转化为double类型</td>
-</tr>
-<tr>
-<td align="center">f2i</td>
-<td align="center">把float类型的数据转化为int类型</td>
-</tr>
-<tr>
-<td align="center">f2l</td>
-<td align="center">把float类型的数据转化为long类型</td>
-</tr>
-<tr>
-<td align="center">f2d</td>
-<td align="center">把float类型的数据转化为double类型</td>
-</tr>
-<tr>
-<td align="center">d2i</td>
-<td align="center">把double类型的数据转化为int类型</td>
-</tr>
-<tr>
-<td align="center">d2l</td>
-<td align="center">把double类型的数据转化为long类型</td>
-</tr>
-<tr>
-<td align="center">d2f</td>
-<td align="center">把double类型的数据转化为float类型</td>
-</tr>
-<tr>
-<td align="center">i2b</td>
-<td align="center">把int类型的数据转化为byte类型</td>
-</tr>
-<tr>
-<td align="center">i2c</td>
-<td align="center">把int类型的数据转化为char类型</td>
-</tr>
-<tr>
-<td align="center">i2s</td>
-<td align="center">把int类型的数据转化为short类型</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="3-整数运算"><a href="#3-整数运算" class="headerlink" title="3.整数运算"></a>3.整数运算</h2><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">iadd</td>
-<td align="center">执行int类型的加法</td>
-</tr>
-<tr>
-<td align="center">ladd</td>
-<td align="center">执行long类型的加法</td>
-</tr>
-<tr>
-<td align="center">isub</td>
-<td align="center">执行int类型的减法</td>
-</tr>
-<tr>
-<td align="center">lsub</td>
-<td align="center">执行long类型的减法</td>
-</tr>
-<tr>
-<td align="center">imul</td>
-<td align="center">执行int类型的乘法</td>
-</tr>
-<tr>
-<td align="center">lmul</td>
-<td align="center">执行long类型的乘法</td>
-</tr>
-<tr>
-<td align="center">idiv</td>
-<td align="center">执行int类型的除法</td>
-</tr>
-<tr>
-<td align="center">ldiv</td>
-<td align="center">执行long类型的除法</td>
-</tr>
-<tr>
-<td align="center">irem</td>
-<td align="center">计算int类型除法的余数</td>
-</tr>
-<tr>
-<td align="center">lrem</td>
-<td align="center">计算long类型除法的余数</td>
-</tr>
-<tr>
-<td align="center">ineg</td>
-<td align="center">对一个int类型值进行取反操作</td>
-</tr>
-<tr>
-<td align="center">lneg</td>
-<td align="center">对一个long类型值进行取反操作</td>
-</tr>
-<tr>
-<td align="center">iinc</td>
-<td align="center">把一个常量值加到一个int类型的局部变量上</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="4-逻辑运算"><a href="#4-逻辑运算" class="headerlink" title="4.逻辑运算"></a>4.逻辑运算</h2><h3 id="4-1-移位操作"><a href="#4-1-移位操作" class="headerlink" title="4.1 移位操作"></a>4.1 移位操作</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ishl</td>
-<td align="center">执行int类型的向左移位操作</td>
-</tr>
-<tr>
-<td align="center">lshl</td>
-<td align="center">执行long类型的向左移位操作</td>
-</tr>
-<tr>
-<td align="center">ishr</td>
-<td align="center">执行int类型的向右移位操作</td>
-</tr>
-<tr>
-<td align="center">lshr</td>
-<td align="center">执行long类型的向右移位操作</td>
-</tr>
-<tr>
-<td align="center">iushr</td>
-<td align="center">执行int类型的向右逻辑移位操作</td>
-</tr>
-<tr>
-<td align="center">lushr</td>
-<td align="center">执行long类型的向右逻辑移位操作</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="4-2-按位布尔运算"><a href="#4-2-按位布尔运算" class="headerlink" title="4.2 按位布尔运算"></a>4.2 按位布尔运算</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">iand</td>
-<td align="center">对int类型值进行“逻辑与”操作</td>
-</tr>
-<tr>
-<td align="center">land</td>
-<td align="center">对long类型值进行“逻辑与”操作</td>
-</tr>
-<tr>
-<td align="center">ior</td>
-<td align="center">对int类型值进行“逻辑或”操作</td>
-</tr>
-<tr>
-<td align="center">lor</td>
-<td align="center">对long类型值进行“逻辑或”操作</td>
-</tr>
-<tr>
-<td align="center">ixor</td>
-<td align="center">对int类型值进行“逻辑异或”操作</td>
-</tr>
-<tr>
-<td align="center">lxor</td>
-<td align="center">对long类型值进行“逻辑异或”操作</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="4-3浮点运算"><a href="#4-3浮点运算" class="headerlink" title="4.3浮点运算"></a>4.3浮点运算</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">fadd</td>
-<td align="center">执行float类型的加法</td>
-</tr>
-<tr>
-<td align="center">dadd</td>
-<td align="center">执行double类型的加法</td>
-</tr>
-<tr>
-<td align="center">fsub</td>
-<td align="center">执行float类型的减法</td>
-</tr>
-<tr>
-<td align="center">dsub</td>
-<td align="center">执行double类型的减法</td>
-</tr>
-<tr>
-<td align="center">fmul</td>
-<td align="center">执行float类型的乘法</td>
-</tr>
-<tr>
-<td align="center">dmul</td>
-<td align="center">执行double类型的乘法</td>
-</tr>
-<tr>
-<td align="center">fdiv</td>
-<td align="center">执行float类型的除法</td>
-</tr>
-<tr>
-<td align="center">ddiv</td>
-<td align="center">执行double类型的除法</td>
-</tr>
-<tr>
-<td align="center">frem</td>
-<td align="center">计算float类型除法的余数</td>
-</tr>
-<tr>
-<td align="center">drem</td>
-<td align="center">计算double类型除法的余数</td>
-</tr>
-<tr>
-<td align="center">fneg</td>
-<td align="center">将一个float类型的数值取反</td>
-</tr>
-<tr>
-<td align="center">dneg</td>
-<td align="center">将一个double类型的数值取反</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="5-数组和对象"><a href="#5-数组和对象" class="headerlink" title="5.数组和对象"></a>5.数组和对象</h2><h3 id="5-1-对象操作指令"><a href="#5-1-对象操作指令" class="headerlink" title="5.1 对象操作指令"></a>5.1 对象操作指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">new</td>
-<td align="center">创建一个新对象</td>
-</tr>
-<tr>
-<td align="center">checkcast</td>
-<td align="center">确定对象为所给定的类型</td>
-</tr>
-<tr>
-<td align="center">getfield</td>
-<td align="center">从对象中获取字段</td>
-</tr>
-<tr>
-<td align="center">putfield</td>
-<td align="center">设置对象中字段的值</td>
-</tr>
-<tr>
-<td align="center">getstatic</td>
-<td align="center">从类中获取静态字段</td>
-</tr>
-<tr>
-<td align="center">putstatic</td>
-<td align="center">设置类中静态字段的值</td>
-</tr>
-<tr>
-<td align="center">instanceof</td>
-<td align="center">判断对象是否为给定的类型</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="5-2-数组操作指令"><a href="#5-2-数组操作指令" class="headerlink" title="5.2 数组操作指令"></a>5.2 数组操作指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">newarray</td>
-<td align="center">分配数据成员类型为基本上数据类型的新数组</td>
-</tr>
-<tr>
-<td align="center">anewarray</td>
-<td align="center">分配数据成员类型为引用类型的新数组</td>
-</tr>
-<tr>
-<td align="center">arraylength</td>
-<td align="center">获取数组长度</td>
-</tr>
-<tr>
-<td align="center">multianewarray</td>
-<td align="center">分配新的多维数组</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="6-控制流"><a href="#6-控制流" class="headerlink" title="6.控制流"></a>6.控制流</h2><h3 id="6-1-条件分支指令"><a href="#6-1-条件分支指令" class="headerlink" title="6.1 条件分支指令"></a>6.1 条件分支指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ifeq</td>
-<td align="center">如果等于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifne</td>
-<td align="center">如果不等于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">iflt</td>
-<td align="center">如果小于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifge</td>
-<td align="center">如果大于等于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifgt</td>
-<td align="center">如果大于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifle</td>
-<td align="center">如果小于等于0，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmpcq</td>
-<td align="center">如果两个int值相等，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmpne</td>
-<td align="center">如果两个int类型值不相等，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmplt</td>
-<td align="center">如果一个int类型值小于另外一个int类型值，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmpge</td>
-<td align="center">如果一个int类型值大于或者等于另外一个int类型值，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmpgt</td>
-<td align="center">如果一个int类型值大于另外一个int类型值，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_icmple</td>
-<td align="center">如果一个int类型值小于或者等于另外一个int类型值，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifnull</td>
-<td align="center">如果等于null，则跳转</td>
-</tr>
-<tr>
-<td align="center">ifnonnull</td>
-<td align="center">如果不等于null，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_acmpeq</td>
-<td align="center">如果两个对象引用相等，则跳转</td>
-</tr>
-<tr>
-<td align="center">if_acmpnc</td>
-<td align="center">如果两个对象引用不相等，则跳转</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="6-2-比较指令"><a href="#6-2-比较指令" class="headerlink" title="6.2 比较指令"></a>6.2 比较指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">lcmp</td>
-<td align="center">比较long类型值</td>
-</tr>
-<tr>
-<td align="center">fcmpl</td>
-<td align="center">比较float类型值（当遇到NaN时，返回-1）</td>
-</tr>
-<tr>
-<td align="center">fcmpg</td>
-<td align="center">比较float类型值（当遇到NaN时，返回1）</td>
-</tr>
-<tr>
-<td align="center">dcmpl</td>
-<td align="center">比较double类型值（当遇到NaN时，返回-1）</td>
-</tr>
-<tr>
-<td align="center">dcmpg</td>
-<td align="center">比较double类型值（当遇到NaN时，返回1）</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="6-3-无条件转移指令"><a href="#6-3-无条件转移指令" class="headerlink" title="6.3 无条件转移指令"></a>6.3 无条件转移指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">goto</td>
-<td align="center">无条件跳转</td>
-</tr>
-<tr>
-<td align="center">goto_w</td>
-<td align="center">无条件跳转（宽索引）</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="6-4-表跳转指令"><a href="#6-4-表跳转指令" class="headerlink" title="6.4 表跳转指令"></a>6.4 表跳转指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">tableswitch</td>
-<td align="center">通过索引访问跳转表，并跳转</td>
-</tr>
-<tr>
-<td align="center">lookupswitch</td>
-<td align="center">通过键值匹配访问跳转表，并执行跳转操作</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="6-5-异常"><a href="#6-5-异常" class="headerlink" title="6.5 异常"></a>6.5 异常</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">athrow</td>
-<td align="center">抛出异常或错误</td>
-</tr>
-<tr>
-<td align="center">finally</td>
-<td align="center">子句</td>
-</tr>
-<tr>
-<td align="center">jsr</td>
-<td align="center">跳转到子例程</td>
-</tr>
-<tr>
-<td align="center">jsr_w</td>
-<td align="center">跳转到子例程（宽索引）</td>
-</tr>
-<tr>
-<td align="center">rct</td>
-<td align="center">从子例程返回</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="7-方法调用与返回"><a href="#7-方法调用与返回" class="headerlink" title="7.方法调用与返回"></a>7.方法调用与返回</h2><h3 id="7-1-方法调用指令"><a href="#7-1-方法调用指令" class="headerlink" title="7.1 方法调用指令"></a>7.1 方法调用指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">invokcvirtual</td>
-<td align="center">运行时按照对象的类来调用实例方法</td>
-</tr>
-<tr>
-<td align="center">invokespecial</td>
-<td align="center">根据编译时类型来调用实例方法</td>
-</tr>
-<tr>
-<td align="center">invokestatic</td>
-<td align="center">调用类（静态）方法</td>
-</tr>
-<tr>
-<td align="center">invokcinterface</td>
-<td align="center">调用接口方法</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="7-2-方法返回指令"><a href="#7-2-方法返回指令" class="headerlink" title="7.2 方法返回指令"></a>7.2 方法返回指令</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ireturn</td>
-<td align="center">从方法中返回int类型的数据</td>
-</tr>
-<tr>
-<td align="center">lreturn</td>
-<td align="center">从方法中返回long类型的数据</td>
-</tr>
-<tr>
-<td align="center">freturn</td>
-<td align="center">从方法中返回float类型的数据</td>
-</tr>
-<tr>
-<td align="center">dreturn</td>
-<td align="center">从方法中返回double类型的数据</td>
-</tr>
-<tr>
-<td align="center">areturn</td>
-<td align="center">从方法中返回引用类型的数据</td>
-</tr>
-<tr>
-<td align="center">return</td>
-<td align="center">从方法中返回，返回值为void</td>
-</tr>
-</tbody></table>
-<br>
-
-<h3 id="7-3-线程同步"><a href="#7-3-线程同步" class="headerlink" title="7.3 线程同步"></a>7.3 线程同步</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">montiorenter</td>
-<td align="center">进入并获取对象监视器</td>
-</tr>
-<tr>
-<td align="center">monitorexit</td>
-<td align="center">释放并退出对象监视器</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="8-助记符"><a href="#8-助记符" class="headerlink" title="8.助记符"></a>8.助记符</h2><p><strong>变量到操作数栈</strong> ：iload,iload_,lload,lload_,fload,fload_,dload,dload_,aload,aload_<br>**操作数栈到变量 **：istore,istore_,lstore,lstore_,fstore,fstore_,dstore,dstor_,astore,astore_<br><strong>常数到操作数栈</strong> ：bipush,sipush,ldc,ldc_w,ldc2_w,aconst_null,iconst_ml,iconst_,lconst_,fconst_,dconst_<br><strong>加</strong> ：iadd,ladd,fadd,dadd<br><strong>减</strong> ：isub,lsub,fsub,dsub<br><strong>乘</strong> ：imul,lmul,fmul,dmul<br><strong>除</strong> ：idiv,ldiv,fdiv,ddiv<br><strong>余数</strong> ：irem,lrem,frem,drem<br><strong>取负</strong> ：ineg,lneg,fneg,dneg<br><strong>移位</strong> ：ishl,lshr,iushr,lshl,lshr,lushr<br><strong>按位或</strong> ：ior,lor<br><strong>按位与</strong> ：iand,land<br><strong>按位异或</strong> ：ixor,lxor<br><strong>类型转换</strong> ：i2l,i2f,i2d,l2f,l2d,f2d(放宽数值转换)<br>i2b,i2c,i2s,l2i,f2i,f2l,d2i,d2l,d2f(缩窄数值转换)<br><strong>创建类实例</strong> ：new<br><strong>创建新数组</strong> ：newarray,anewarray,multianwarray<br><strong>访问类的域和类实例域</strong> ：getfield,putfield,getstatic,putstatic<br><strong>把数据装载到操作数栈</strong> ：baload,caload,saload,iaload,laload,faload,daload,aaload<br><strong>从操作数栈存存储到数组</strong> ：bastore,castore,sastore,iastore,lastore,fastore,dastore,aastore<br><strong>获取数组长度</strong> ：arraylength<br><strong>检相类实例或数组属性</strong> ：instanceof,checkcast<br><strong>操作数栈管理</strong> ：pop,pop2,dup,dup2,dup_xl,dup2_xl,dup_x2,dup2_x2,swap<br><strong>有条件转移</strong> : ifeq,iflt,ifle,ifne,ifgt,ifge,ifnull,ifnonnull,if_icmpeq,if_icmpene,if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne,lcmp,fcmpl,fcmpg,dcmpl,dcmpg<br><strong>复合条件转移</strong> ：tableswitch,lookupswitch<br><strong>无条件转移</strong> ：goto,goto_w,jsr,jsr_w,ret<br><strong>调度对象的实例方法</strong> ：invokevirtual<br><strong>调用由接口实现的方法</strong> ：invokeinterface<br><strong>调用需要特殊处理的实例方法</strong> ：invokespecial<br><strong>调用命名类中的静态方法</strong> ：invokestatic<br><strong>方法返回</strong> ：ireturn,lreturn,freturn,dreturn,areturn,return<br><strong>异常</strong> ：athrow<br><strong>finally关键字的实现使用</strong> ：jsr,jsr_w,ret</p>
+<p><img src="/2022/04/24/android-learn/image-20220424160747638.png" alt="image-20220424160747638"></p>
+<h5 id="DexClassLoader实战"><a href="#DexClassLoader实战" class="headerlink" title="DexClassLoader实战"></a>DexClassLoader实战</h5><ul>
+<li>首先加入SD卡读写权限<ul>
+<li><code>&lt;uses-permission-sdk-23 android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission-sdk-23&gt;</code></li>
+<li><code>&lt;uses-permission-sdk-23 android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission-sdk-23&gt;</code></li>
+</ul>
+</li>
+<li></li>
+</ul>
 
       
 
@@ -1087,7 +307,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字节码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安卓逆向</a>
         		</li>
       		
 		</ul>
@@ -1143,7 +363,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://xing-yu-chen.github.io/2021/11/10/jvm-reder/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://xing-yu-chen.github.io/2022/04/24/android-learn/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1157,18 +377,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/11/22/shiro-review/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Shiro权限管理框架
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/11/09/java-01/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java核心机制(JVM、GC)-01</div>
+    <a href="/2022/04/16/kali-learn/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kali Linux学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -1195,7 +406,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">思维导图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%88%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">1.栈和局部变量操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B0%86%E5%B8%B8%E9%87%8F%E5%8E%8B%E5%85%A5%E6%A0%88%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 将常量压入栈的指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BB%8E%E6%A0%88%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%B8%AD%E8%A3%85%E8%BD%BD%E5%80%BC%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 从栈中的局部变量中装载值的指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E5%B0%86%E6%A0%88%E4%B8%AD%E7%9A%84%E5%80%BC%E5%AD%98%E5%85%A5%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">1.3将栈中的值存入局部变量的指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%80%9A%E7%94%A8-%E6%97%A0%E7%B1%BB%E5%9E%8B-%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 通用(无类型)栈操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">2.类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">4.</span> <span class="toc-text">3.整数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="toc-number">5.</span> <span class="toc-text">4.逻辑运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 移位操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%8C%89%E4%BD%8D%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97"><span class="toc-number">5.2.</span> <span class="toc-text">4.2 按位布尔运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">5.3.</span> <span class="toc-text">4.3浮点运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.</span> <span class="toc-text">5.数组和对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%AF%B9%E8%B1%A1%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">5.1 对象操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">6.2.</span> <span class="toc-text">5.2 数组操作指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-number">7.</span> <span class="toc-text">6.控制流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 条件分支指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 比较指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4"><span class="toc-number">7.3.</span> <span class="toc-text">6.3 无条件转移指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E8%A1%A8%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">7.4.</span> <span class="toc-text">6.4 表跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E5%BC%82%E5%B8%B8"><span class="toc-number">7.5.</span> <span class="toc-text">6.5 异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%94%E5%9B%9E"><span class="toc-number">8.</span> <span class="toc-text">7.方法调用与返回</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">8.1.</span> <span class="toc-text">7.1 方法调用指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4"><span class="toc-number">8.2.</span> <span class="toc-text">7.2 方法返回指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">8.3.</span> <span class="toc-text">7.3 线程同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%8A%A9%E8%AE%B0%E7%AC%A6"><span class="toc-number">9.</span> <span class="toc-text">8.助记符</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Android%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">1. Android类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8-ClassLoader"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 JVM类加载器(ClassLoader)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE"><span class="toc-number">1.1.1.</span> <span class="toc-text">双亲委派</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%97%B6%E6%9C%BA"><span class="toc-number">1.1.2.</span> <span class="toc-text">类加载时机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">隐式加载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">显式加载</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">类加载步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Android%E7%B1%BB%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.</span> <span class="toc-text">1.2. Android类加载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E4%B8%AAClassLoader%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">8个ClassLoader解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%8D%93%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">安卓源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ClassLoader-java"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">ClassLoader.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#BaseDexClassLoader-java"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">BaseDexClassLoader.java</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ClassLoader%E5%AE%9E%E6%88%98%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">ClassLoader实战查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DexClassLoader%E5%AE%9E%E6%88%98"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">DexClassLoader实战</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
