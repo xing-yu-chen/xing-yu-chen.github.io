@@ -70,7 +70,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 19
+                         总文章数 20
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -169,6 +169,87 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/20/dns/">DNS服务器的配置</a>
+    </h1>
+  
+
+
+  <a href="javascript:;" class="archive-article-date">
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/12/20/dns/" class="pageViews">0</span>次
+  </a>
+
+
+<!--显示阅读次数完毕-->
+        
+        <a href="/2021/12/20/dns/" class="archive-article-date">
+  	<time datetime="2021-12-20T05:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Docker安装DNS"><a href="#1-Docker安装DNS" class="headerlink" title="1. Docker安装DNS"></a>1. Docker安装DNS</h2><h3 id="1-1-安装docker"><a href="#1-1-安装docker" class="headerlink" title="1.1 安装docker"></a>1.1 安装docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/docker | sh</span><br></pre></td></tr></table></figure>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/20/dns/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-JavaGenerator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -685,7 +766,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/spring/">spring</a>
+      <a class="article-title" href="/2020/11/04/spring/">Spring源码</a>
     </h1>
   
 
@@ -705,10 +786,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Spring面试题"><a href="#Spring面试题" class="headerlink" title="Spring面试题"></a>Spring面试题</h2><p>聊聊Spring</p>
-<p>说明Bean生命周期</p>
-<p>循环依赖</p>
-        
+        <h2 id="来源视频"><a href="#来源视频" class="headerlink" title="来源视频"></a>来源视频</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16q4y1n7Fd">https://www.bilibili.com/video/BV16q4y1n7Fd</a></p>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取Class对象</span></span><br><span class="line">Class clazz = Class.forName(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">Class clazz = 对象.getClass();</span><br><span class="line">Class clazz = 类.class;</span><br><span class="line"><span class="comment">// 拿到构造器对象</span></span><br><span class="line">Constructor constructor = clazz.getDeclareConstructor();</span><br><span class="line"><span class="comment">// 返回对象信息</span></span><br><span class="line">Object obj = constructor.newInstance();</span><br></pre></td></tr></table></figure>
+
+<h2 id="IOC流程"><a href="#IOC流程" class="headerlink" title="IOC流程"></a>IOC流程</h2><p><img src="/2020/11/04/spring/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.png" alt="未命名文件"></p>
+<h2 id="手写Spring框架"><a href="#手写Spring框架" class="headerlink" title="手写Spring框架"></a>手写Spring框架</h2><h3 id="1-创建IOC容器"><a href="#1-创建IOC容器" class="headerlink" title="1. 创建IOC容器"></a>1. 创建IOC容器</h3><blockquote>
+<p>SpringApplicationContext.java</p>
+</blockquote>
+<p>首先要创建IOC容器，IOC容器需要一个启动类<code>CustomerApplicationStarter.java</code></p>
+
       
 
       
@@ -721,11 +807,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
         		</li>
       		
 		</ul>
@@ -1113,11 +1195,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1125,15 +1203,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1145,11 +1223,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1157,11 +1231,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,6 +1248,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">社工</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -70,7 +70,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 19
+                         总文章数 20
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -169,6 +169,227 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-agent" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/05/agent/">javaagent</a>
+    </h1>
+  
+
+
+  <a href="javascript:;" class="archive-article-date">
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2022/05/05/agent/" class="pageViews">0</span>次
+  </a>
+
+
+<!--显示阅读次数完毕-->
+        
+        <a href="/2022/05/05/agent/" class="archive-article-date">
+  	<time datetime="2022-05-05T12:10:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ASM"><a href="#ASM" class="headerlink" title="ASM"></a>ASM</h2><h3 id="Java类型描述符"><a href="#Java类型描述符" class="headerlink" title="Java类型描述符"></a>Java类型描述符</h3><table>
+<thead>
+<tr>
+<th>Java类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>Z</td>
+</tr>
+<tr>
+<td>char</td>
+<td>C</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>B</td>
+</tr>
+<tr>
+<td>int</td>
+<td>I</td>
+</tr>
+<tr>
+<td>float</td>
+<td>F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>D</td>
+</tr>
+<tr>
+<td>long</td>
+<td>J</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Ljava/lang/Object;</td>
+</tr>
+<tr>
+<td>int[]</td>
+<td>[I</td>
+</tr>
+<tr>
+<td>Object[]</td>
+<td>[[Ljava/lang/Object;</td>
+</tr>
+</tbody></table>
+<h3 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h3><h4 id="1-ClassVisitor-class"><a href="#1-ClassVisitor-class" class="headerlink" title="1. ClassVisitor.class"></a>1. ClassVisitor.class</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassVisitor</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClassVisitor</span><span class="params">(<span class="keyword">int</span> api)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ClassVisitor</span><span class="params">(<span class="keyword">int</span> api, ClassVisitor cv)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(<span class="keyword">int</span> version, <span class="keyword">int</span> access, String name,</span></span></span><br><span class="line"><span class="params"><span class="function">  String signature, String superName, String[] interfaces)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitSource</span><span class="params">(String source, String debug)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitOuterClass</span><span class="params">(String owner, String name, String desc)</span></span>;</span><br><span class="line">  <span class="function">AnnotationVisitor <span class="title">visitAnnotation</span><span class="params">(String desc, <span class="keyword">boolean</span> visible)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitAttribute</span><span class="params">(Attribute attr)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitInnerClass</span><span class="params">(String name, String outerName,</span></span></span><br><span class="line"><span class="params"><span class="function">  String innerName, <span class="keyword">int</span> access)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> FieldVisitor <span class="title">visitField</span><span class="params">(<span class="keyword">int</span> access, String name, String desc,</span></span></span><br><span class="line"><span class="params"><span class="function">  String signature, Object value)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> MethodVisitor <span class="title">visitMethod</span><span class="params">(<span class="keyword">int</span> access, String name, String desc,</span></span></span><br><span class="line"><span class="params"><span class="function">  String signature, String[] exceptions)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visitEnd</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-FieldVisitor-class"><a href="#2-FieldVisitor-class" class="headerlink" title="2. FieldVisitor.class"></a>2. FieldVisitor.class</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FieldVisitor</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FieldVisitor</span><span class="params">(<span class="keyword">int</span> api)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FieldVisitor</span><span class="params">(<span class="keyword">int</span> api, FieldVisitor fv)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> AnnotationVisitor <span class="title">visitAnnotation</span><span class="params">(String desc, <span class="keyword">boolean</span> visible)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitAttribute</span><span class="params">(Attribute attr)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitEnd</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="方法字段解释"><a href="#方法字段解释" class="headerlink" title="方法字段解释"></a>方法字段解释</h3><h4 id="1-visit"><a href="#1-visit" class="headerlink" title="1. visit()"></a>1. <strong>visit()</strong></h4><blockquote>
+<p>访问类的声明部分</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">int</span> version, //java版本</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">int</span> access, //访问修饰符</span></span></span><br><span class="line"><span class="params"><span class="function">    String name, //类名</span></span></span><br><span class="line"><span class="params"><span class="function">    String signature, //泛型参数，没有泛型为<span class="keyword">null</span></span></span></span><br><span class="line"><span class="params"><span class="function">    String superName, //直接父类</span></span></span><br><span class="line"><span class="params"><span class="function">    String[] interfaces)</span> <span class="comment">//接口集合</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-visitSource"><a href="#2-visitSource" class="headerlink" title="2. visitSource()"></a>2. visitSource()</h4><blockquote>
+<p>访问类代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visitSource</span><span class="params">(String source, String debug)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<h4 id="3-visitOuterClass"><a href="#3-visitOuterClass" class="headerlink" title="3. visitOuterClass()"></a>3. visitOuterClass()</h4><blockquote>
+<p>访问外部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visitOuterClass</span><span class="params">(String owner, String name, String desc)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<h4 id="4-visitAnnotation"><a href="#4-visitAnnotation" class="headerlink" title="4. visitAnnotation()"></a>4. visitAnnotation()</h4><blockquote>
+<p>访问类的注解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">AnnotationVisitor <span class="title">visitAnnotation</span><span class="params">(String desc, <span class="keyword">boolean</span> visible)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-visitAttribute"><a href="#5-visitAttribute" class="headerlink" title="5. visitAttribute()"></a>5. visitAttribute()</h4><blockquote>
+<p>访问类的属性</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visitAttribute</span><span class="params">(Attribute attr)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-visitInnerClass"><a href="#6-visitInnerClass" class="headerlink" title="6. visitInnerClass()"></a>6. visitInnerClass()</h4><blockquote>
+<p>访问类的内部类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visitInnerClass</span><span class="params">(String name, String outerName, String innerName,<span class="keyword">int</span> access)</span></span>; </span><br></pre></td></tr></table></figure>
+
+<h4 id="7-visitField"><a href="#7-visitField" class="headerlink" title="7. visitField()"></a>7. visitField()</h4><blockquote>
+<p>访问类的字段</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> FieldVisitor <span class="title">visitField</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> <span class="keyword">int</span> access, //字段的访问修饰符</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String name, //字段的简单名称</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String descriptor, //字段的描述符</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String signature, //字段的泛型，没有泛型为<span class="keyword">null</span></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> Object value)</span> <span class="comment">//字段的值(static 不是final的会自动添加到&lt;clinit&gt;方法 已证实)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8-visitMethod"><a href="#8-visitMethod" class="headerlink" title="8. visitMethod()"></a>8. <strong>visitMethod()</strong></h4><blockquote>
+<p>用于填充类的方法表信息</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> MethodVisitor <span class="title">visitMethod</span><span class="params">( </span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> <span class="keyword">int</span> access, //方法的访问修饰符</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String name, //方法的简单名称</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String descriptor, //方法的描述符</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String signature,// 方法的泛型</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">final</span> String[] exceptions)</span> <span class="comment">//方法的额外信息(代码、异常)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-visitEnd"><a href="#9-visitEnd" class="headerlink" title="9.visitEnd()"></a>9.visitEnd()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitEnd</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Java方法描述符"><a href="#Java方法描述符" class="headerlink" title="Java方法描述符"></a>Java方法描述符</h3><table>
+<thead>
+<tr>
+<th>方法声明</th>
+<th>方法描述符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void m(int i, float f)</td>
+<td>(IF)V</td>
+</tr>
+<tr>
+<td>int m(Object o)</td>
+<td>(Ljava/lang/Object;)I</td>
+</tr>
+<tr>
+<td>int[] m(int i, String s)</td>
+<td>(ILjava/lang/String;)[I</td>
+</tr>
+<tr>
+<td>Object m(int[] i)</td>
+<td>([I)Ljava/lang/Object;</td>
+</tr>
+</tbody></table>
+<h3 id="1-打印类"><a href="#1-打印类" class="headerlink" title="1. 打印类"></a>1. 打印类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPrinter</span> <span class="keyword">extends</span> <span class="title">ClassVisitor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPrinter</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(<span class="keyword">int</span> version, <span class="keyword">int</span> access, String name,</span></span></span><br><span class="line"><span class="params"><span class="function">                      String signature, String superName, String[] interfaces)</span> </span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot; extends &quot;</span> + superName + <span class="string">&quot; &#123;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitSource</span><span class="params">(String source, String debug)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitOuterClass</span><span class="params">(String owner, String name, String desc)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnnotationVisitor <span class="title">visitAnnotation</span><span class="params">(String desc,</span></span></span><br><span class="line"><span class="params"><span class="function">                                             <span class="keyword">boolean</span> visible)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitAttribute</span><span class="params">(Attribute attr)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitInnerClass</span><span class="params">(String name, String outerName,</span></span></span><br><span class="line"><span class="params"><span class="function">                                String innerName, <span class="keyword">int</span> access)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> FieldVisitor <span class="title">visitField</span><span class="params">(<span class="keyword">int</span> access, String name, String desc,</span></span></span><br><span class="line"><span class="params"><span class="function">                                   String signature, Object value)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot; &quot;</span> + desc + <span class="string">&quot; &quot;</span> + name);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> MethodVisitor <span class="title">visitMethod</span><span class="params">(<span class="keyword">int</span> access, String name,</span></span></span><br><span class="line"><span class="params"><span class="function">                                     String desc, String signature, String[] exceptions)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot; &quot;</span> + name + desc);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;&#125;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ClassPrinter cp = <span class="keyword">new</span> ClassPrinter(Opcodes.ASM5);</span><br><span class="line">        ClassReader cr = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// cr = new ClassReader(&quot;com.example.ClassPrinter&quot;);</span></span><br><span class="line">            cr = <span class="keyword">new</span> ClassReader(ClassPrinter.class.getClassLoader().getResourceAsStream(<span class="string">&quot;com/example/ClassPrinter.class&quot;</span>));</span><br><span class="line">            cr.accept(cp, <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><ul>
+<li><p>当<code>new ClassReader</code>时，改类就会被加载到内存里</p>
+</li>
+<li><p>随后<code>ClassVisitor</code>就可以看到他在内存中的name、method、field</p>
+<p><img src="/2022/05/05/agent/image-20220505225003759.png" alt="image-20220505225003759"></p>
+</li>
+</ul>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">com/example/ClassPrinter extends jdk/internal/org/objectweb/asm/ClassVisitor &#123;</span><br><span class="line"> &lt;init&gt;(I)<span class="function">V</span></span><br><span class="line"><span class="function"> <span class="title">visit</span><span class="params">(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function"> <span class="title">visitSource</span><span class="params">(Ljava/lang/String;Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function"> <span class="title">visitOuterClass</span><span class="params">(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function"> <span class="title">visitAnnotation</span><span class="params">(Ljava/lang/String;Z)</span>Ljdk/internal/org/objectweb/asm/AnnotationVisitor</span>;</span><br><span class="line"> visitAttribute(Ljdk/internal/org/objectweb/asm/Attribute;)<span class="function">V</span></span><br><span class="line"><span class="function"> <span class="title">visitInnerClass</span><span class="params">(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)</span>V</span></span><br><span class="line"><span class="function"> <span class="title">visitField</span><span class="params">(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)</span>Ljdk/internal/org/objectweb/asm/FieldVisitor</span>;</span><br><span class="line"> visitMethod(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)Ljdk/internal/org/objectweb/asm/MethodVisitor;</span><br><span class="line"> visitEnd()<span class="function">V</span></span><br><span class="line"><span class="function"> <span class="title">main</span><span class="params">([Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-生成类"><a href="#2-生成类" class="headerlink" title="2. 生成类"></a>2. 生成类</h3><h4 id="待生成源码"><a href="#待生成源码" class="headerlink" title="待生成源码"></a>待生成源码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pkg;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span> <span class="keyword">extends</span> <span class="title">Mesurable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> LESS = -<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> EQUAL = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> GREATER = <span class="number">1</span>;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ClassLoader自定义类加载"><a href="#ClassLoader自定义类加载" class="headerlink" title="ClassLoader自定义类加载"></a>ClassLoader自定义类加载</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Class <span class="title">defineClass</span><span class="params">(String name, <span class="keyword">byte</span>[] b)</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> Class <span class="title">findClass</span><span class="params">(String name)</span><span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name.endsWith(<span class="string">&quot;_Stub&quot;</span>)) &#123;</span><br><span class="line">      ClassWriter cw = <span class="keyword">new</span> ClassWriter(<span class="number">0</span>);</span><br><span class="line">      ...</span><br><span class="line">      <span class="keyword">byte</span>[] b = cw.toByteArray();</span><br><span class="line">      <span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">return</span> <span class="keyword">super</span>.findClass(name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ASM代码"><a href="#ASM代码" class="headerlink" title="ASM代码"></a>ASM代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ClassWriter cw = <span class="keyword">new</span> ClassWriter(<span class="number">0</span>);</span><br><span class="line">cw.visit(V1_5, ACC_PUBLIC + ACC_ABSTRACT + ACC_INTERFACE,<span class="string">&quot;pkg/Comparable&quot;</span>, <span class="keyword">null</span>,<span class="string">&quot;java/lang/Object&quot;</span>,</span><br><span class="line"><span class="keyword">new</span> String[] &#123; <span class="string">&quot;pkg/Mesurable&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, <span class="string">&quot;LESS&quot;</span>, <span class="string">&quot;I&quot;</span>,</span><br><span class="line"><span class="keyword">null</span>, <span class="keyword">new</span> Integer(-<span class="number">1</span>)).visitEnd();</span><br><span class="line"></span><br><span class="line">cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, <span class="string">&quot;EQUAL&quot;</span>, <span class="string">&quot;I&quot;</span>,</span><br><span class="line"><span class="keyword">null</span>, <span class="keyword">new</span> Integer(<span class="number">0</span>)).visitEnd();</span><br><span class="line"></span><br><span class="line">cw.visitField(ACC_PUBLIC + ACC_FINAL + ACC_STATIC, <span class="string">&quot;GREATER&quot;</span>, <span class="string">&quot;I&quot;</span>,</span><br><span class="line"><span class="keyword">null</span>, <span class="keyword">new</span> Integer(<span class="number">1</span>)).visitEnd();</span><br><span class="line"></span><br><span class="line">cw.visitMethod(ACC_PUBLIC + ACC_ABSTRACT, <span class="string">&quot;compareTo&quot;</span>,</span><br><span class="line"><span class="string">&quot;(Ljava/lang/Object;)I&quot;</span>, <span class="keyword">null</span>, <span class="keyword">null</span>).visitEnd();</span><br><span class="line">cw.visitEnd();</span><br><span class="line"></span><br><span class="line"><span class="keyword">byte</span>[] b = cw.toByteArray();</span><br><span class="line"><span class="comment">// 使用自定义类加载加载生成的class</span></span><br><span class="line">Class c = myClassLoader.defineClass(<span class="string">&quot;pkg.Comparable&quot;</span>, b);</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字节码</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/05/agent/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-android-learn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1947,87 +2168,6 @@
 
 
   
-    <article id="post-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/20/dns/">DNS服务器的配置</a>
-    </h1>
-  
-
-
-  <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2021/12/20/dns/" class="pageViews">0</span>次
-  </a>
-
-
-<!--显示阅读次数完毕-->
-        
-        <a href="/2021/12/20/dns/" class="archive-article-date">
-  	<time datetime="2021-12-20T05:55:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Docker安装DNS"><a href="#1-Docker安装DNS" class="headerlink" title="1. Docker安装DNS"></a>1. Docker安装DNS</h2><h3 id="1-1-安装docker"><a href="#1-1-安装docker" class="headerlink" title="1.1 安装docker"></a>1.1 安装docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/docker | sh</span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/20/dns/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2207,11 +2347,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2219,15 +2355,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2239,11 +2375,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2251,11 +2383,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2264,6 +2400,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">社工</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
               </li>
              
               <li class="article-tag-list-item">
