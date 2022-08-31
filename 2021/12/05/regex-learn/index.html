@@ -15,11 +15,13 @@
 <meta property="og:site_name" content="小呆博客">
 <meta property="og:description" content="在线测试工具https:&#x2F;&#x2F;tool.oschina.net&#x2F;regex&#x2F;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2021/12/05/regex-learn/image-20220529230252889.png">
 <meta property="article:published_time" content="2021-12-05T06:25:47.000Z">
-<meta property="article:modified_time" content="2021-12-05T09:24:49.986Z">
+<meta property="article:modified_time" content="2022-05-29T15:24:23.059Z">
 <meta property="article:author" content="Small Dai">
 <meta property="article:tag" content="正则表达式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xing-yu-chen.github.io/2021/12/05/regex-learn/image-20220529230252889.png">
   
     <link rel="alternative" href="/atom.xml" title="小呆博客" type="application/atom+xml">
   
@@ -67,7 +69,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 20
+                         总文章数 25
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -196,233 +198,33 @@
         <h2 id="在线测试工具"><a href="#在线测试工具" class="headerlink" title="在线测试工具"></a>在线测试工具</h2><p><a target="_blank" rel="noopener" href="https://tool.oschina.net/regex/">https://tool.oschina.net/regex/</a></p>
 <span id="more"></span>
 
-
-
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="常用限定符"><a href="#常用限定符" class="headerlink" title="常用限定符"></a>常用限定符</h3><table>
-<thead>
-<tr>
-<th>代码</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>**</td>
-<td>重复零次或更多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>重复一次或更多次</td>
-</tr>
-<tr>
-<td>?</td>
-<td>重复零次或一次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>重复n次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>重复n次或更多次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>重复n到m次</td>
-</tr>
-</tbody></table>
-<h3 id="匹配字符串"><a href="#匹配字符串" class="headerlink" title="匹配字符串"></a>匹配字符串</h3><table>
-<thead>
-<tr>
-<th>字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[ABC]</td>
-<td>匹配 <strong>[…]</strong> 中的所有字符，例如 <strong>[aeiou]</strong> 匹配字符串 “google runoob taobao” 中所有的 e o u a 字母。</td>
-</tr>
-<tr>
-<td>[^ABC]</td>
-<td>匹配除了 <strong>[…]</strong> 中字符的所有字符，例如 <strong>[^aeiou]</strong> 匹配字符串 “google runoob taobao” 中除了 e o u a 字母的所有字母。</td>
-</tr>
-<tr>
-<td>[A-Z]</td>
-<td>[A-Z] 表示一个区间，匹配所有大写字母，[a-z] 表示所有小写字母。</td>
-</tr>
-<tr>
-<td>.</td>
-<td>匹配除换行符（\n、\r）之外的任何单个字符，相等于 [^\n\r]。</td>
-</tr>
-<tr>
-<td>[\s\S]</td>
-<td>匹配所有。\s 是匹配所有空白符，包括换行，\S 非空白符，不包括换行。</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开始</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结束</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配数字</td>
-</tr>
-<tr>
-<td>()</td>
-<td>匹配子表达式开始和结束位置,要使用()使用\(和\)</td>
-</tr>
-<tr>
-<td>|</td>
-<td>指明两项之间的一个选择。要匹配 |，请使用 \</td>
-</tr>
-</tbody></table>
-<h3 id="非打印字符"><a href="#非打印字符" class="headerlink" title="非打印字符"></a>非打印字符</h3><table>
-<thead>
-<tr>
-<th>字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\cx</td>
-<td>匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>匹配一个换页符。等价于 \x0c 和 \cL。</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>匹配一个换行符。等价于 \x0a 和 \cJ。</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>匹配一个回车符。等价于 \x0d 和 \cM。</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。注意 Unicode 正则表达式会匹配全角空格符。</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>匹配一个制表符。等价于 \x09 和 \cI。</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>匹配一个垂直制表符。等价于 \x0b 和 \cK。</td>
-</tr>
-</tbody></table>
-<h3 id="常用反义词"><a href="#常用反义词" class="headerlink" title="常用反义词"></a>常用反义词</h3><table>
-<thead>
-<tr>
-<th>代码</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>\W</td>
-<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td>[^x]</td>
-<td>匹配除了x以外的任意字符</td>
-</tr>
-<tr>
-<td>** 常用反义词**</td>
-<td>匹配除了aeiou这几个字母以外的任意字符</td>
-</tr>
-</tbody></table>
-<h3 id="常用模式修正符"><a href="#常用模式修正符" class="headerlink" title="常用模式修正符"></a>常用模式修正符</h3><table>
-<thead>
-<tr>
-<th>代码</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>i</td>
-<td>表示在进行匹配的时候不区分大小写</td>
-</tr>
-<tr>
-<td>m</td>
-<td>多行识别.即将字符串视为多行,不管是那行都能匹配</td>
-</tr>
-<tr>
-<td>s</td>
-<td>将字符串视为单行,转义回车换行符作为普通字符</td>
-</tr>
-<tr>
-<td>g</td>
-<td>表示全局匹配</td>
-</tr>
-<tr>
-<td>x</td>
-<td>将模式中的空白忽略</td>
-</tr>
-<tr>
-<td>A</td>
-<td>强制从目标字符串开头匹配</td>
-</tr>
-<tr>
-<td>D</td>
-<td>强制尾部无任何内容.若使用$限制结尾字符,则不允许结尾有换行</td>
-</tr>
-<tr>
-<td>U</td>
-<td>禁止贪婪匹配,只匹配最近的一个字符串(不重复匹配)</td>
-</tr>
-<tr>
-<td>e</td>
-<td>配合PHP函数preg_replace()使用,可以把匹配来的字符串当作正则表达式执行</td>
-</tr>
-</tbody></table>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1234 123 12</span></span><br><span class="line">/[1-9][0-9]*/g</span><br></pre></td></tr></table></figure>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><p><img src="/2021/12/05/regex-learn/image-20220529230252889.png" alt="image-20220529230252889"></p>
+<h2 id="方法注意点"><a href="#方法注意点" class="headerlink" title="方法注意点"></a>方法注意点</h2><ul>
+<li><p>正则表达式中有存在转义的问题，比如<code>\t</code>变成制表符,所以要加<code>r&#39;abc&#39;</code></p>
+</li>
+<li><p>match()</p>
+<ul>
+<li>缺点：是从字符串起始位置匹配,只能单个进行匹配(尽量别用)</li>
+</ul>
+</li>
+<li><p>finall()</p>
+<ul>
+<li>缺点：获取数据多个，需要进一步处理(爬虫中用的多)</li>
+</ul>
+</li>
+</ul>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p>首先先把需要的源码拉出来，然后再在里面进行匹配的操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;zhangsan he lisi shuo ta de shoujihao shi 12345678890&#x27;</span></span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line"><span class="comment"># 1. 拿出来需要匹配的手机号</span></span><br><span class="line">re(<span class="string">&#x27;zhangsan he lisi shuo ta de shoujihao shi 12345678890&#x27;</span>)</span><br><span class="line"><span class="comment"># 2. 修改数据</span></span><br></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0 01 99</span></span><br><span class="line">/[0-9]&#123;1,2&#125;/g</span><br><span class="line"><span class="comment"># 10 22 88 排除0开头</span></span><br><span class="line">/[1-9][0-9]?/g</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="匹配JSON字符串中的某值"><a href="#匹配JSON字符串中的某值" class="headerlink" title="匹配JSON字符串中的某值"></a>匹配JSON字符串中的某值</h3><blockquote>
+<p>百度源码中一段字符串中的protool的值</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span>:<span class="string">&quot;https:&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;staticUrl&quot;</span>:<span class="string">&quot;https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;base&quot;</span>:<span class="string">&quot;home&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;baseuri&quot;</span>:<span class="string">&quot;/home&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;passconf&quot;</span>:<span class="string">&quot;http://passport.baidu.com/ubrwsbas&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;logout&quot;</span>:<span class="string">&quot;https://passport.baidu.com/?logout&amp;u=&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;bs&quot;</span>:<span class="string">&quot;https://www.baidu.com&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;login&quot;</span>:<span class="string">&quot;http://passport.baidu.com/?login&amp;tpl=super&amp;u=&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;sp&quot;</span>:<span class="string">&quot;http://hi.baidu.com/&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &lt;h1&gt;RUNOOB-菜鸟教程&lt;/h1&gt;</span></span><br><span class="line"><span class="comment"># 贪婪：下面的表达式匹配从开始小于符号 (&lt;) 到关闭 h1 标记的大于符号 (&gt;) 之间的所有内容。</span></span><br><span class="line">/&lt;.*&gt;/g</span><br><span class="line"><span class="comment"># 非贪婪：如果您只需要匹配开始和结束 h1 标签，下面的非贪婪表达式只匹配 &lt;h1&gt;。</span></span><br><span class="line">/&lt;.*?&gt;/g</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  匹配一个章节标题</span></span><br><span class="line">/^Chapter [1-9][0-9]&#123;0,1&#125;/g</span><br><span class="line">/^Chapter [1-9][0-9]&#123;0,1&#125;$/</span><br><span class="line">/\bCha/</span><br><span class="line">/ter\b/</span><br><span class="line">/\Bapt/</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择</span></span><br><span class="line"><span class="comment"># 用圆括号 () 将所有选择项括起来，相邻的选择项之间用 | 分隔。() 表示捕获分组，() 会把每个分组里的匹配的值保存起来， 多个匹配值可以通过数字 n 来查看(n 是一个数字，表示第 n 个捕获组的内容)。</span></span><br><span class="line">/([1-9])([a-z]+)/g  <span class="comment">#6runoob</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找重复的单词</span></span><br><span class="line">var str = <span class="string">&quot;Is is the cost of of gasoline going up up&quot;</span>;</span><br><span class="line">var patt1 = /\b([a-z]+) \1\b/ig;</span><br><span class="line">document.write(str.match(patt1));</span><br></pre></td></tr></table></figure>
+<p>demo</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">        &quot;protocol&quot;:&quot;https:&quot;,</span></span><br><span class="line"><span class="string">        &quot;staticUrl&quot;:&quot;https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/&quot;,</span></span><br><span class="line"><span class="string">        &quot;base&quot;:&quot;home&quot;,</span></span><br><span class="line"><span class="string">        &quot;baseuri&quot;:&quot;/home&quot;,</span></span><br><span class="line"><span class="string">        &quot;passconf&quot;:&quot;http://passport.baidu.com/ubrwsbas&quot;,</span></span><br><span class="line"><span class="string">        &quot;logout&quot;:&quot;https://passport.baidu.com/?logout&amp;u=&quot;,</span></span><br><span class="line"><span class="string">        &quot;bs&quot;:&quot;https://www.baidu.com&quot;,</span></span><br><span class="line"><span class="string">        &quot;login&quot;:&quot;http://passport.baidu.com/?login&amp;tpl=super&amp;u=&quot;,</span></span><br><span class="line"><span class="string">        &quot;sp&quot;:&quot;http://hi.baidu.com/&quot;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">result = re.findall(<span class="string">r&#x27;&quot;protocol&quot;:&quot;.+&quot;&#x27;</span>, content)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"><span class="comment"># [&#x27;&quot;protocol&quot;:&quot;https:&quot;&#x27;]    </span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -576,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">在线测试工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="toc-number">2.1.</span> <span class="toc-text">常用限定符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">匹配字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E6%89%93%E5%8D%B0%E5%AD%97%E7%AC%A6"><span class="toc-number">2.3.</span> <span class="toc-text">非打印字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%8D%E4%B9%89%E8%AF%8D"><span class="toc-number">2.4.</span> <span class="toc-text">常用反义词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%BC%8F%E4%BF%AE%E6%AD%A3%E7%AC%A6"><span class="toc-number">2.5.</span> <span class="toc-text">常用模式修正符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">2.6.</span> <span class="toc-text">例子</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">在线测试工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">方法注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">4.</span> <span class="toc-text">小技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">5.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8DJSON%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%9F%90%E5%80%BC"><span class="toc-number">5.1.</span> <span class="toc-text">匹配JSON字符串中的某值</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -770,11 +572,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
+                <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,11 +584,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
+                <a href="javascript:void(0)" class="js-tag color5">安卓逆向</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+                <a href="javascript:void(0)" class="js-tag color5">信息收集</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,7 +600,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">量化分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -806,11 +612,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
+                <a href="javascript:void(0)" class="js-tag color5">安全开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -818,11 +628,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
+                <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">社工</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -831,10 +645,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">kali</a>
               </li>
              
               <li class="article-tag-list-item">
