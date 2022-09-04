@@ -8,15 +8,25 @@
   <link rel="dns-prefetch" href="http://xing-yu-chen.github.io">
   <title>Linux安全(磁盘进程计划任务) | 小呆博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="磁盘进程计划任务">
+  <meta name="description" content="磁盘进程计划任务1. 学习计划 基本磁盘分区 LVM与磁盘配额 进程管理与计划任务（应急以及内网的权限维持）  2. 磁盘和文件系统管理 管理磁盘及分区 检测并确认新磁盘 规范硬盘中的分区   管理文件系统 创建文件系统 挂载、卸载文件系统    2.1 创建文件系统2.1.1 fdisk命令(查看管理磁盘分区)12fdisk -l [磁盘设备]fdisk [磁盘设备]   1fdisk &#x2F;dev">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux安全(磁盘进程计划任务)">
 <meta property="og:url" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/index.html">
 <meta property="og:site_name" content="小呆博客">
-<meta property="og:description" content="磁盘进程计划任务">
+<meta property="og:description" content="磁盘进程计划任务1. 学习计划 基本磁盘分区 LVM与磁盘配额 进程管理与计划任务（应急以及内网的权限维持）  2. 磁盘和文件系统管理 管理磁盘及分区 检测并确认新磁盘 规范硬盘中的分区   管理文件系统 创建文件系统 挂载、卸载文件系统    2.1 创建文件系统2.1.1 fdisk命令(查看管理磁盘分区)12fdisk -l [磁盘设备]fdisk [磁盘设备]   1fdisk &#x2F;dev">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831135258472.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831135901802.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831141721844.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831142605029.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831142824697.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831153024600.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831153544302.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831154824349.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831155401991.png">
+<meta property="og:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831160352916.png">
 <meta property="article:published_time" content="2022-08-30T14:29:38.000Z">
-<meta property="article:modified_time" content="2022-08-31T01:42:43.638Z">
+<meta property="article:modified_time" content="2022-08-31T16:21:09.631Z">
 <meta property="article:author" content="Small Dai">
 <meta property="article:tag" content="前端博客，后端博客，Java">
 <meta property="article:tag" content="vue.js">
@@ -25,6 +35,7 @@
 <meta property="article:tag" content="springboot">
 <meta property="article:tag" content="springcloud">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xing-yu-chen.github.io/2022/08/30/linux-safe3/image-00040831135258472.png">
   
     <link rel="alternative" href="/atom.xml" title="小呆博客" type="application/atom+xml">
   
@@ -72,7 +83,7 @@
 			</ul>
 		</nav>
                  <nav style="font-size:12px">
-                         总文章数 25
+                         总文章数 28
                  </nav>
 		<nav class="header-smart-menu">
     		
@@ -198,7 +209,341 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="磁盘进程计划任务"><a href="#磁盘进程计划任务" class="headerlink" title="磁盘进程计划任务"></a>磁盘进程计划任务</h1>
+        <h1 id="磁盘进程计划任务"><a href="#磁盘进程计划任务" class="headerlink" title="磁盘进程计划任务"></a>磁盘进程计划任务</h1><h2 id="1-学习计划"><a href="#1-学习计划" class="headerlink" title="1. 学习计划"></a>1. 学习计划</h2><ul>
+<li>基本磁盘分区</li>
+<li>LVM与磁盘配额</li>
+<li>进程管理与计划任务（应急以及内网的权限维持）</li>
+</ul>
+<h2 id="2-磁盘和文件系统管理"><a href="#2-磁盘和文件系统管理" class="headerlink" title="2. 磁盘和文件系统管理"></a>2. 磁盘和文件系统管理</h2><ul>
+<li>管理磁盘及分区<ul>
+<li>检测并确认新磁盘</li>
+<li>规范硬盘中的分区</li>
+</ul>
+</li>
+<li>管理文件系统<ul>
+<li>创建文件系统</li>
+<li>挂载、卸载文件系统</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-创建文件系统"><a href="#2-1-创建文件系统" class="headerlink" title="2.1 创建文件系统"></a>2.1 创建文件系统</h3><h4 id="2-1-1-fdisk命令-查看管理磁盘分区"><a href="#2-1-1-fdisk命令-查看管理磁盘分区" class="headerlink" title="2.1.1 fdisk命令(查看管理磁盘分区)"></a>2.1.1 fdisk命令(查看管理磁盘分区)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l [磁盘设备]</span><br><span class="line">fdisk [磁盘设备]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831135258472.png" alt="image-00040831135258472"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831135901802.png" alt="image-00040831135901802"></p>
+<p>根据帮助交互使用即可，完成后使用<code>partprobe</code>命令将磁盘分区情况刷新。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">partprobe /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-mkfs-格式化磁盘"><a href="#2-1-2-mkfs-格式化磁盘" class="headerlink" title="2.1.2 mkfs (格式化磁盘)"></a>2.1.2 mkfs (格式化磁盘)</h4><blockquote>
+<p>因为Linux一切皆文件，没有文件系统这个硬盘就是不可用的</p>
+</blockquote>
+<p>所以要给磁盘格式化提供文件系统。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给第二块硬盘的第二个主分区格式化</span></span><br><span class="line">mkfs -t xfs /dev/sdb2</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831141721844.png" alt="image-00040831141721844"></p>
+<h4 id="2-1-3-mount-磁盘分区完毕需要挂载"><a href="#2-1-3-mount-磁盘分区完毕需要挂载" class="headerlink" title="2.1.3 mount (磁盘分区完毕需要挂载)"></a>2.1.3 mount (磁盘分区完毕需要挂载)</h4><blockquote>
+<p>磁盘分区完毕后，最后一步需要挂载。</p>
+<p>挂载IOS文件时要加一个<code>-o loop</code>参数</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /sdb2</span><br><span class="line">mount /dev/sdb2 /sdb2</span><br><span class="line"></span><br><span class="line">mount -o rw /dev/sdb2 <span class="comment"># 可读可写</span></span><br><span class="line">mount -o ro /dev/sdb2 <span class="comment"># 只读</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-4-umount-不想用这个磁盘移除挂载点"><a href="#2-1-4-umount-不想用这个磁盘移除挂载点" class="headerlink" title="2.1.4 umount(不想用这个磁盘移除挂载点)"></a>2.1.4 umount(不想用这个磁盘移除挂载点)</h4><blockquote>
+<p>在挂载位置删除即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /sdb2</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-创建交换文件分区"><a href="#2-2-创建交换文件分区" class="headerlink" title="2.2 创建交换文件分区"></a>2.2 创建交换文件分区</h3><h4 id="2-2-1-mkswap创建交换文件系统"><a href="#2-2-1-mkswap创建交换文件系统" class="headerlink" title="2.2.1 mkswap创建交换文件系统"></a>2.2.1 mkswap创建交换文件系统</h4><blockquote>
+<p>针对于swap文件分区专门的文件系统</p>
+</blockquote>
+<p><img src="/2022/08/30/linux-safe3/image-00040831142605029.png" alt="image-00040831142605029"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /dev/sdb3</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2-查看进程占用"><a href="#2-2-2-查看进程占用" class="headerlink" title="2.2.2 查看进程占用"></a>2.2.2 查看进程占用</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/meminfo|grep SwapTotal</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831142824697.png" alt="image-00040831142824697"></p>
+<h4 id="2-2-3-swapon-swapoff-打开-关闭交换文件分区"><a href="#2-2-3-swapon-swapoff-打开-关闭交换文件分区" class="headerlink" title="2.2.3 swapon/swapoff(打开/关闭交换文件分区)"></a>2.2.3 swapon/swapoff(打开/关闭交换文件分区)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /dev/sdb3</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-开机自动挂载"><a href="#2-3-开机自动挂载" class="headerlink" title="2.3 开机自动挂载"></a>2.3 开机自动挂载</h3><p>分区的配置参数文件：<code>/etc/fstab</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb2      /sdb2       xfs       defaults    0   0 </span><br><span class="line">  分区          挂载点   文件系统类别   分区属性默认  自动备份&amp;检测控制位</span><br></pre></td></tr></table></figure>
+
+<p>*注意排除手动挂载点的影响</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -a <span class="comment"># 执行自动保存的挂载点</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-df-查看分区空间使用情况"><a href="#2-4-df-查看分区空间使用情况" class="headerlink" title="2.4 df (查看分区空间使用情况)"></a>2.4 df (查看分区空间使用情况)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -hT  <span class="comment"># 查看分区情况及类型</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-LVM-逻辑卷管理"><a href="#2-5-LVM-逻辑卷管理" class="headerlink" title="2.5 LVM(逻辑卷管理)"></a>2.5 LVM(逻辑卷管理)</h3><blockquote>
+<p>逻辑卷于分区完毕后操作产生，即上面的命令</p>
+</blockquote>
+<p><img src="/2022/08/30/linux-safe3/image-00040831153024600.png" alt="image-00040831153024600"></p>
+<p><img src="/2022/08/30/linux-safe3/image-00040831153544302.png" alt="image-00040831153544302"></p>
+<h4 id="2-5-1-主要命令"><a href="#2-5-1-主要命令" class="headerlink" title="2.5.1 主要命令"></a>2.5.1 主要命令</h4><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>物理卷管理</th>
+<th>卷组管理</th>
+<th>逻辑卷管理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scan扫描</td>
+<td>pvscan</td>
+<td>vgscan</td>
+<td>lgscan</td>
+</tr>
+<tr>
+<td>Create建立</td>
+<td><u>pvcreate</u></td>
+<td><u>vgcreate</u></td>
+<td><u>lgcreate</u></td>
+</tr>
+<tr>
+<td>Display显示</td>
+<td>pvdisplay</td>
+<td><u>vgdisplay</u></td>
+<td>lgdisplay</td>
+</tr>
+<tr>
+<td>Remove删除</td>
+<td>pvremove</td>
+<td>vgremove</td>
+<td>lgremove</td>
+</tr>
+<tr>
+<td>Extend扩展</td>
+<td></td>
+<td><u>vgextend</u></td>
+<td><u>lvextend</u></td>
+</tr>
+<tr>
+<td>Reduce减少</td>
+<td></td>
+<td>vgreduce</td>
+<td>lvreduce</td>
+</tr>
+</tbody></table>
+<h4 id="2-5-2-物理卷创建"><a href="#2-5-2-物理卷创建" class="headerlink" title="2.5.2 物理卷创建"></a>2.5.2 物理卷创建</h4><p><code>pvcreate /dev/sdb2</code> 分区在哪创建哪</p>
+<p><img src="/2022/08/30/linux-safe3/image-00040831154824349.png" alt="image-00040831154824349"></p>
+<h4 id="2-5-3-物理卷查看"><a href="#2-5-3-物理卷查看" class="headerlink" title="2.5.3 物理卷查看"></a>2.5.3 物理卷查看</h4><p><code>pvdisplay</code> 查看分区物理卷</p>
+<h4 id="2-5-4-卷组创建"><a href="#2-5-4-卷组创建" class="headerlink" title="2.5.4 卷组创建"></a>2.5.4 卷组创建</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vgcreate  vg0(卷组名) /dev/sdb2</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-5-5-逻辑卷创建"><a href="#2-5-5-逻辑卷创建" class="headerlink" title="2.5.5 逻辑卷创建"></a>2.5.5 逻辑卷创建</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvcreate -L(大小) 100M -n(名字) data vg0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831155401991.png" alt="image-00040831155401991"></p>
+<h4 id="2-5-6-扩展逻辑卷"><a href="#2-5-6-扩展逻辑卷" class="headerlink" title="2.5.6 扩展逻辑卷"></a>2.5.6 扩展逻辑卷</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvextend -L +20M /dev/vg0/data</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/08/30/linux-safe3/image-00040831160352916.png" alt="image-00040831160352916"></p>
+<h2 id="3-磁盘配额"><a href="#3-磁盘配额" class="headerlink" title="3. 磁盘配额"></a>3. 磁盘配额</h2><h3 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h3><ul>
+<li>需要Linux内核支持</li>
+<li>安装xfsprogs与quota软件包</li>
+</ul>
+<h3 id="3-2-查看依赖是否被安装"><a href="#3-2-查看依赖是否被安装" class="headerlink" title="3.2 查看依赖是否被安装"></a>3.2 查看依赖是否被安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep xfsprogs | grep quota	</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-Linux限额特点"><a href="#3-3-Linux限额特点" class="headerlink" title="3.3 Linux限额特点"></a>3.3 Linux限额特点</h3><p>作用范围：针对指定的文件系统(分区) /etc/data /root</p>
+<p>限制对象：用户账号、组账号</p>
+<p>限制类型</p>
+<ul>
+<li>磁盘容量(默认KB)</li>
+<li>文件数量</li>
+</ul>
+<p>限制类型：</p>
+<ul>
+<li>软连接</li>
+<li>硬链接</li>
+</ul>
+<h3 id="3-4-quota配额（ext4）"><a href="#3-4-quota配额（ext4）" class="headerlink" title="3.4 quota配额（ext4）"></a>3.4 quota配额（ext4）</h3><ul>
+<li>启动文件系统配额支持</li>
+<li>检测磁盘配额并创建配额文件</li>
+<li>编辑用户和组账号的配额设置</li>
+<li>启用关闭配额功能</li>
+</ul>
+<h4 id="3-4-1-启动文件系统配额支持"><a href="#3-4-1-启动文件系统配额支持" class="headerlink" title="3.4.1 启动文件系统配额支持"></a>3.4.1 启动文件系统配额支持</h4><blockquote>
+<p>添加userquota、grpquota挂载参数，用来起到限额的作用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br><span class="line">/dev/vg0/data /data xfs defaults.usrquota.grpquota 0 0 </span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-2-检测磁盘配额并创建配额文件"><a href="#3-4-2-检测磁盘配额并创建配额文件" class="headerlink" title="3.4.2 检测磁盘配额并创建配额文件"></a>3.4.2 检测磁盘配额并创建配额文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quotacheck -ugvc /dev/sdb1 <span class="comment"># 仅一个分区</span></span><br><span class="line">quotacheck -augvc <span class="comment"># 所有分区</span></span><br></pre></td></tr></table></figure>
+
+<p>*<code>-c</code> 创建配置文件</p>
+<p><strong>结果：</strong> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l /mailbox/aquota.*</span><br><span class="line">-rw -- -- -- 1 root root 6144 May 5 13:54 /mailbox/aquota.group <span class="comment"># 组配额文件</span></span><br><span class="line">-rw -- -- -- 1 root root 6144 May 5 13:54 /mailbox/aquota.user <span class="comment"># 用户配额文件</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-3-编辑用户和组账号的配额设置"><a href="#3-4-3-编辑用户和组账号的配额设置" class="headerlink" title="3.4.3 编辑用户和组账号的配额设置"></a>3.4.3 编辑用户和组账号的配额设置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">edquota -u 用户名(zhangsan)</span><br><span class="line">edquota -g 组名(user)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-4-启用关闭文件系统配额功能"><a href="#3-4-4-启用关闭文件系统配额功能" class="headerlink" title="3.4.4 启用关闭文件系统配额功能"></a>3.4.4 启用关闭文件系统配额功能</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quotaon -ugv /mailbox</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-5-查看配额使用情况"><a href="#3-4-5-查看配额使用情况" class="headerlink" title="3.4.5 查看配额使用情况"></a>3.4.5 查看配额使用情况</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">quota -u 用户名 <span class="comment"># 侧重用户</span></span><br><span class="line">quota -g 组名	 <span class="comment"># 侧重用户</span></span><br><span class="line">requota /mailbox <span class="comment"># 侧重文件系统</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-xfs-quota管理配额（xfs）"><a href="#3-5-xfs-quota管理配额（xfs）" class="headerlink" title="3.5 xfs_quota管理配额（xfs）"></a>3.5 xfs_quota管理配额（xfs）</h3><ul>
+<li>第一步同quota更改分区属性支持配置(同上)</li>
+<li>第二步编辑用户和组账号的配额设置</li>
+<li>第三步验证磁盘配额功能(同上)</li>
+<li>第四步查看磁盘配额使用情况(同上)</li>
+</ul>
+<h4 id="3-5-1-编辑用户和组账号的配额设置"><a href="#3-5-1-编辑用户和组账号的配额设置" class="headerlink" title="3.5.1 编辑用户和组账号的配额设置"></a>3.5.1 编辑用户和组账号的配额设置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfs_quota -x -c <span class="string">&#x27;limit -u bsoft=50M bhard=80M isoft=4 ihard=6 zhangsan(用户名)&#x27;</span> /data(挂载点)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-x 高级模式，必须有</li>
+<li>-c code支持代码</li>
+<li>hard 限制量 bhard限制文件大小80M ihard限制文件数量6个</li>
+</ul>
+<h2 id="4-进程和计划任务管理"><a href="#4-进程和计划任务管理" class="headerlink" title="4. 进程和计划任务管理"></a>4. 进程和计划任务管理</h2><h3 id="4-1-ps-查看进程"><a href="#4-1-ps-查看进程" class="headerlink" title="4.1 ps (查看进程)"></a>4.1 ps (查看进程)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps -ef </span><br><span class="line">ps aux <span class="comment">#查看所有用户的进程</span></span><br><span class="line">ps aux --sort=%cpu <span class="comment"># 按cpu占用量降序</span></span><br><span class="line">ps aux --sort=-rss <span class="comment"># 按内存占用量降序</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-top-动态查看进程"><a href="#4-2-top-动态查看进程" class="headerlink" title="4.2 top(动态查看进程)"></a>4.2 top(动态查看进程)</h3><h3 id="4-3-pgrep-查看进程"><a href="#4-3-pgrep-查看进程" class="headerlink" title="4.3 pgrep(查看进程)"></a>4.3 pgrep(查看进程)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pgrep -l <span class="string">&quot;log&quot;</span> <span class="comment">#筛选出进程带有log的</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-at-一次性计划任务"><a href="#4-4-at-一次性计划任务" class="headerlink" title="4.4 at (一次性计划任务)"></a>4.4 at (一次性计划任务)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">at [HH:MM] [yyyy-mm-dd]</span><br><span class="line">at&gt; 命令</span><br><span class="line">at&gt;&lt;EOT&gt; <span class="comment"># 结束标语</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>atq：查看还没执行的任务列表</li>
+<li>atrm 标识： 删除</li>
+</ul>
+<h3 id="4-5-crontab命令"><a href="#4-5-crontab命令" class="headerlink" title="4.5 crontab命令"></a>4.5 crontab命令</h3><ul>
+<li>全局配置文件，”<strong>/etc/crontab</strong> “</li>
+<li>系统默认配置，”<strong>/etc/cron.*/</strong> “</li>
+<li>用户定义设置，”<strong>/var/spool/cron/用户名</strong> “</li>
+</ul>
+<h4 id="4-5-1-编辑计划任务"><a href="#4-5-1-编辑计划任务" class="headerlink" title="4.5.1 编辑计划任务"></a>4.5.1 编辑计划任务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-2-查看计划任务"><a href="#4-5-2-查看计划任务" class="headerlink" title="4.5.2 查看计划任务"></a>4.5.2 查看计划任务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-3-删除计划任务"><a href="#4-5-3-删除计划任务" class="headerlink" title="4.5.3 删除计划任务"></a>4.5.3 删除计划任务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-4-配置格式"><a href="#4-5-4-配置格式" class="headerlink" title="4.5.4 配置格式"></a>4.5.4 配置格式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分钟 小时 日期 月份 星期 + 命令</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-作业"><a href="#5-作业" class="headerlink" title="5. 作业"></a>5. 作业</h2><p>1.分区ID为82代表什么类型？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux swap</span><br></pre></td></tr></table></figure>
+
+<p>2.如何启用已创建的交换分区？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /dev/sdb2</span><br></pre></td></tr></table></figure>
+
+<p>3.使用什么命令格式化分区？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t xfs /dev/sdb2</span><br></pre></td></tr></table></figure>
+
+<p>4.简述fstab文件中各字段的含义。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb2 /sdb2    xfs    defaults    0      0 </span><br><span class="line">分区	  挂载目录 文件系统类型 默认配置  自动备份 检测控制位  </span><br></pre></td></tr></table></figure>
+
+<p>5.使用fdisk分区工具时，常见的几种分区类型及各自的ID号分别是什么（写出三种以上）？</p>
+<ul>
+<li>Linux swap 82</li>
+<li>LVM 8e</li>
+<li>Linux 83</li>
+</ul>
+<p>6.在fdisk环境中输入“w”与“q”分别表示什么含义？</p>
+<ul>
+<li>w 保存并退出</li>
+<li>q 不保存退出</li>
+</ul>
+<p>7.在Linux中执行什么操作可将分区/dev/sdb1格式化为XFS文件系统？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t xfs /dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<p>8.依次执行什么操作可以将普通分区/dev/sdb5创建为交换分区？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /dev/sdb5</span><br></pre></td></tr></table></figure>
+
+<p>9.在Linux中启用、停用交换分区的命令分别是什么？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon/swapoff /dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<p>10.使用mount命令挂载ISO镜像文件需要添加什么选项？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o loop xx.iso</span><br></pre></td></tr></table></figure>
+
+<p>11.使用mount命令挂载文件系统时添加的“-o rw,ro”表示什么含义？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-o rw 可读可写</span><br><span class="line">-o ro 只读</span><br></pre></td></tr></table></figure>
+
+<p>12.查看 pv 的详细信息用什么命令？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pvdisplay</span><br></pre></td></tr></table></figure>
+
+<p>13.LVM 的分区类型是什么？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8e</span><br></pre></td></tr></table></figure>
+
+<p>14.在 myvg 卷组上创建逻辑卷 mylv，空间大小为 200M，执行什么命令？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvcreate -L 200M -n myls myvg</span><br></pre></td></tr></table></figure>
+
+<p>15.简述创建及使用LVM逻辑卷的基本过程</p>
+<ul>
+<li>根据磁盘创建各自的物理卷(pv)</li>
+<li>然后创建卷组(vg)</li>
+<li>然后根据需要从卷组中划分出物理卷(lv)</li>
+<li>挂载物理卷并使用</li>
+</ul>
+<p>16.执行“lvcreate -L 10G -n chaitin_lv chaitin_vg”命令的作用是什么？</p>
+<p>​    在卷组chaitin_vg中创建大小是10G名字是chaitin_lv的逻辑卷</p>
+<p>17.执行什么命令可以将ali卷组下的chaitin逻辑卷在线增加10GB大小（基于XFS文件系统）？</p>
+<ul>
+<li>首先修改配置文件在defaults后面加上<code>.usrquota.grpquota</code></li>
+<li>然后<code>lvextend -L +10G /dev/ali/chaitin</code></li>
+</ul>
+<p>18.简述磁盘配额限制的对象、类型、方法</p>
+<p>​    磁盘配额限制用户和组</p>
+<p>​    类型两种：ext4和xfs</p>
+<p>​    方法：quota和xfs_quota</p>
+<p>19.执行“mount -o uquota,gquota /dev/mail_store/mbox /mailbox/”命令的作用是什么？</p>
+<p>​    将用户限额组限额的/dev/mail_store/mbox挂载到/mailbox/</p>
+<p>20.设置用户zhangsan在/date目录的磁盘容量的软限制80MB、硬限制100MB的命令是什么？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfs_quota -x -c <span class="string">&#x27;limit -u bsoft=50M bhard=80M isoft=4 ihard=6 zhangsan&#x27;</span> /data</span><br></pre></td></tr></table></figure>
+
+<p>21.执行命令“xfs_quota -c ‘quota -uv zhangsan’ /mailbox/”的作用是什么？</p>
+<p>配置/mailbox/目录的xfs的逻辑盘设置zhangsan限额。</p>
+<p>22.在Linux操作系统中执行什么命令可以查看所有可用分区的磁盘配额使用情况？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requota /分区</span><br></pre></td></tr></table></figure>
+
+<p>23.若要查看httpd进程的PID号，可使用哪些方法？</p>
+<ul>
+<li>ps -ef | grep httpd</li>
+<li>ps -aux | grep httpd</li>
+<li>pgrep httpd</li>
+</ul>
+<p>24.列表对比pgrep与pstree命令的作用、使用场景、常用选项与操作？</p>
+<p>pgrep列出来查看进程</p>
+<p>pstree树型查看进程</p>
+<p>25.使用ps命令时，如果要打印按内存使用量排序，应该使用什么选项？</p>
+<p>ps -aux –sort=-rss</p>
+<p>26.Linux系统下常见的进程启动方式？</p>
+<p>at、crontab、&amp;</p>
+<p>27.Linux系统下进程前台调度到后台执行的命令？</p>
+<p>bg</p>
+<p>28.Linux系统下后台挂起程序如何恢复执行？</p>
+<p>gf</p>
+<p>29.如果发现未知用户开启了bash进程，那么如何在不关闭系统的情况下，强行注销未知用户。    </p>
+<p>pkill -u 用户    </p>
+<p>30.如何一次杀死在多个终端中开启的相同进程。</p>
+<p>killall -l 名字</p>
+<p>31.Linux系统下使用哪些命令管理at计划任务</p>
+<p>at -d id，删除任务</p>
+<p>at 时间</p>
+<p>32.crontab命令结合哪些选项来管理cron计划任务</p>
+<p>crontab -e编辑</p>
+<p>crontab -l查看</p>
+<p>crontab -r删除</p>
+<p>33.写出crontab计划任务配置格式</p>
+<p>分钟 小时 日 月 星期 命令</p>
+<p>34.写出crontab计划任务常用的时间数值的特殊表示方法</p>
+<p>-连续的时间</p>
+<p>,单个分隔</p>
+<p>/* 代表每xx</p>
+<p>35.ps命令中的“a”“u”“x”选项分别代表什么含义？</p>
+<p>a显示系统所有用户 u显示用户 x显示无控制的终端进程</p>
+<p>36.当“ps aux”执行结果中httpd服务的进程状态为“Z”时，该如何处理？</p>
+<p>直接kill，僵尸进程</p>
+<p>37.在Linux操作系统中依次执行什么操作可以设置当天22:30时重启httpd服务？</p>
+<p>crontab -e </p>
+<p>30 22 * * * systemctl restart httpd</p>
+<p>38.在Linux操作系统中依次执行什么操作可以删除指定编号的at任务？</p>
+<p>at -d 任务id</p>
+<p>39.计划任务“30 17 * * 1,3,5 /usr/bin/tar jcf httpdconf.tar.bz2 /etc/httpd/”表示什么含义？</p>
+<p>每星期一三五的17点30分解压bz2文件到httpd中</p>
+<p>40.在Linux系统的root账户下如何设置user用户周期性计划任务？</p>
+<p>crontab -u user -e</p>
+<p>41.在Linux系统中执行“crontab -r”命令的作用是什么？</p>
+<p>清空crontab任务</p>
+
       
 
       
@@ -301,6 +646,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2022/09/01/linux-safe4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux安全(网络)
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/08/29/linux-safe2/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Linux安全(软件安装与账户权限)</div>
@@ -330,7 +684,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E8%BF%9B%E7%A8%8B%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">磁盘进程计划任务</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E8%BF%9B%E7%A8%8B%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">磁盘进程计划任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92"><span class="toc-number">1.1.</span> <span class="toc-text">1. 学习计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%A3%81%E7%9B%98%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">2. 磁盘和文件系统管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 创建文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-fdisk%E5%91%BD%E4%BB%A4-%E6%9F%A5%E7%9C%8B%E7%AE%A1%E7%90%86%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">2.1.1 fdisk命令(查看管理磁盘分区)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-mkfs-%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A3%81%E7%9B%98"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.1.2 mkfs (格式化磁盘)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-3-mount-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E5%AE%8C%E6%AF%95%E9%9C%80%E8%A6%81%E6%8C%82%E8%BD%BD"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">2.1.3 mount (磁盘分区完毕需要挂载)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-4-umount-%E4%B8%8D%E6%83%B3%E7%94%A8%E8%BF%99%E4%B8%AA%E7%A3%81%E7%9B%98%E7%A7%BB%E9%99%A4%E6%8C%82%E8%BD%BD%E7%82%B9"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">2.1.4 umount(不想用这个磁盘移除挂载点)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%88%9B%E5%BB%BA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6%E5%88%86%E5%8C%BA"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 创建交换文件分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-mkswap%E5%88%9B%E5%BB%BA%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1 mkswap创建交换文件系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2 查看进程占用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-swapon-swapoff-%E6%89%93%E5%BC%80-%E5%85%B3%E9%97%AD%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6%E5%88%86%E5%8C%BA"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">2.2.3 swapon&#x2F;swapoff(打开&#x2F;关闭交换文件分区)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 开机自动挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-df-%E6%9F%A5%E7%9C%8B%E5%88%86%E5%8C%BA%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 df (查看分区空间使用情况)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-LVM-%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 LVM(逻辑卷管理)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E4%B8%BB%E8%A6%81%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">2.5.1 主要命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E7%89%A9%E7%90%86%E5%8D%B7%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">2.5.2 物理卷创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-3-%E7%89%A9%E7%90%86%E5%8D%B7%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">2.5.3 物理卷查看</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-4-%E5%8D%B7%E7%BB%84%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.5.4.</span> <span class="toc-text">2.5.4 卷组创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-5-%E9%80%BB%E8%BE%91%E5%8D%B7%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.5.5.</span> <span class="toc-text">2.5.5 逻辑卷创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-6-%E6%89%A9%E5%B1%95%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="toc-number">1.2.5.6.</span> <span class="toc-text">2.5.6 扩展逻辑卷</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D"><span class="toc-number">1.3.</span> <span class="toc-text">3. 磁盘配额</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9F%A5%E7%9C%8B%E4%BE%9D%E8%B5%96%E6%98%AF%E5%90%A6%E8%A2%AB%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 查看依赖是否被安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Linux%E9%99%90%E9%A2%9D%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 Linux限额特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-quota%E9%85%8D%E9%A2%9D%EF%BC%88ext4%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 quota配额（ext4）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%85%8D%E9%A2%9D%E6%94%AF%E6%8C%81"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">3.4.1 启动文件系统配额支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-%E6%A3%80%E6%B5%8B%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D%E5%B9%B6%E5%88%9B%E5%BB%BA%E9%85%8D%E9%A2%9D%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">3.4.2 检测磁盘配额并创建配额文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-%E7%BC%96%E8%BE%91%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E8%B4%A6%E5%8F%B7%E7%9A%84%E9%85%8D%E9%A2%9D%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">3.4.3 编辑用户和组账号的配额设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-4-%E5%90%AF%E7%94%A8%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%85%8D%E9%A2%9D%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">3.4.4 启用关闭文件系统配额功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-5-%E6%9F%A5%E7%9C%8B%E9%85%8D%E9%A2%9D%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.3.4.5.</span> <span class="toc-text">3.4.5 查看配额使用情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-xfs-quota%E7%AE%A1%E7%90%86%E9%85%8D%E9%A2%9D%EF%BC%88xfs%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.5 xfs_quota管理配额（xfs）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-%E7%BC%96%E8%BE%91%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E8%B4%A6%E5%8F%B7%E7%9A%84%E9%85%8D%E9%A2%9D%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">3.5.1 编辑用户和组账号的配额设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%9B%E7%A8%8B%E5%92%8C%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">4. 进程和计划任务管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-ps-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 ps (查看进程)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-top-%E5%8A%A8%E6%80%81%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 top(动态查看进程)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-pgrep-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 pgrep(查看进程)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-at-%E4%B8%80%E6%AC%A1%E6%80%A7%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">4.4 at (一次性计划任务)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-crontab%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.5 crontab命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-%E7%BC%96%E8%BE%91%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">4.5.1 编辑计划任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E6%9F%A5%E7%9C%8B%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">4.5.2 查看计划任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-%E5%88%A0%E9%99%A4%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.4.3.</span> <span class="toc-text">4.5.3 删除计划任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4-%E9%85%8D%E7%BD%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.4.4.4.</span> <span class="toc-text">4.5.4 配置格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.5.</span> <span class="toc-text">5. 作业</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -524,15 +878,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">小呆代码生成器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +890,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">信息收集</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,7 +910,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
+                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,19 +918,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Web安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">面试题</a>
+                <a href="javascript:void(0)" class="js-tag color4">字节码</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安全开发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,6 +931,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">安全开发</a>
               </li>
              
               <li class="article-tag-list-item">
